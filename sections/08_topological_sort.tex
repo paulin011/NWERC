@@ -1,0 +1,65 @@
+\section{Topological Sort}
+
+\textbf{Description:} Linear ordering of vertices in a DAG (Directed Acyclic Graph) such that for every edge u→v, u comes before v. Used for task scheduling, course prerequisites, build systems. Time: O(V+E).
+
+\subsection{Kahn's Algorithm (BFS-based)}
+\textbf{Advantages:} Detects cycles, can process nodes level by level.
+
+\begin{lstlisting}
+from collections import deque
+
+def topo_sort(graph, n):
+    # Count incoming edges for each node
+    indegree = [0] * n
+    for u in range(n):
+        for v in graph[u]:
+            indegree[v] += 1
+    
+    # Start with nodes having no dependencies
+    queue = deque([i for i in range(n) 
+                   if indegree[i] == 0])
+    result = []
+    
+    while queue:
+        node = queue.popleft()
+        result.append(node)
+        
+        # Remove this node from graph
+        for neighbor in graph[node]:
+            indegree[neighbor] -= 1
+            
+            # If neighbor has no more dependencies
+            if indegree[neighbor] == 0:
+                queue.append(neighbor)
+    
+    # If not all nodes processed, cycle exists
+    return result if len(result) == n else []
+\end{lstlisting}
+
+\subsection{DFS-based Topological Sort}
+\textbf{Advantages:} Simpler code, uses less space.
+
+\begin{lstlisting}
+def topo_dfs(graph, n):
+    visited = [False] * n
+    stack = []
+    
+    def dfs(node):
+        visited[node] = True
+        
+        # Visit all neighbors first
+        for neighbor in graph[node]:
+            if not visited[neighbor]:
+                dfs(neighbor)
+        
+        # Add to stack after visiting all descendants
+        stack.append(node)
+    
+    # Process all components
+    for i in range(n):
+        if not visited[i]:
+            dfs(i)
+    
+    # Reverse stack gives topological order
+    return stack[::-1]
+\end{lstlisting}

@@ -1,0 +1,61 @@
+\section{Shortest Path Algorithms}
+
+\subsection{Dijkstra's Algorithm}
+\textbf{Description:} Finds shortest paths from a source to all vertices in weighted graphs with non-negative edges. Time: O((V+E) log V) with heap.
+
+\begin{lstlisting}
+import heapq
+
+def dijkstra(graph, start, n):
+    # Initialize distances to infinity
+    dist = [float('inf')] * n
+    dist[start] = 0
+    
+    # Min heap: (distance, node)
+    heap = [(0, start)]
+    
+    while heap:
+        d, node = heapq.heappop(heap)
+        
+        # Skip if already processed with better distance
+        if d > dist[node]:
+            continue
+        
+        # Relax edges
+        for neighbor, weight in graph[node]:
+            new_dist = dist[node] + weight
+            
+            if new_dist < dist[neighbor]:
+                dist[neighbor] = new_dist
+                heapq.heappush(heap, (new_dist, neighbor))
+    
+    return dist
+
+# Path reconstruction
+def dijkstra_with_path(graph, start, n):
+    dist = [float('inf')] * n
+    parent = [-1] * n
+    dist[start] = 0
+    heap = [(0, start)]
+    
+    while heap:
+        d, node = heapq.heappop(heap)
+        if d > dist[node]:
+            continue
+        
+        for neighbor, weight in graph[node]:
+            new_dist = dist[node] + weight
+            if new_dist < dist[neighbor]:
+                dist[neighbor] = new_dist
+                parent[neighbor] = node
+                heapq.heappush(heap, (new_dist, neighbor))
+    
+    return dist, parent
+
+def reconstruct_path(parent, target):
+    path = []
+    while target != -1:
+        path.append(target)
+        target = parent[target]
+    return path[::-1]
+\end{lstlisting}

@@ -1,0 +1,33 @@
+\section{Input/Output}
+
+\textbf{Description:} Efficient input/output is crucial in competitive programming, especially for problems with large datasets. Using \texttt{sys.stdin.readline} is significantly faster than the default \texttt{input()} function.
+
+\begin{lstlisting}
+# Fast I/O - Essential for large inputs
+import sys
+input = sys.stdin.readline
+
+# Read single integer
+n = int(input())
+
+# Read multiple integers on one line
+a, b = map(int, input().split())
+
+# Read array of integers
+arr = list(map(int, input().split()))
+
+# Read strings (strip to remove trailing newline)
+s = input().strip()
+words = input().split()
+
+# Multiple test cases pattern
+t = int(input())
+for _ in range(t):
+    # process each test case
+
+# Print without newline
+print(x, end=' ')
+
+# Formatted output with precision
+print(f"{x:.6f}")  # 6 decimal places
+\end{lstlisting}

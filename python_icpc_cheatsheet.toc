@@ -1,0 +1,48 @@
+\contentsline {section}{\numberline {1}Input/Output}{3}{section.1}%
+\contentsline {section}{\numberline {2}Basic Data Structures}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}List Operations}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Deque (Double-ended Queue)}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Heap (Priority Queue)}{5}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Dictionary \& Counter}{5}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Set Operations}{6}{subsection.2.5}%
+\contentsline {section}{\numberline {3}String Operations}{7}{section.3}%
+\contentsline {section}{\numberline {4}Mathematics}{8}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Basic Math Operations}{8}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Combinatorics}{8}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Number Theory}{10}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Modular Arithmetic}{10}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Sieve of Eratosthenes}{10}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Prime Factorization}{10}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Graph Algorithms}{12}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Graph Representation}{12}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}BFS (Breadth-First Search)}{12}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}DFS (Depth-First Search)}{13}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Shortest Path Algorithms}{14}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Dijkstra's Algorithm}{14}{subsection.7.1}%
+\contentsline {section}{\numberline {8}Topological Sort}{15}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Kahn's Algorithm (BFS-based)}{15}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}DFS-based Topological Sort}{15}{subsection.8.2}%
+\contentsline {section}{\numberline {9}Union-Find (Disjoint Set Union)}{17}{section.9}%
+\contentsline {section}{\numberline {10}Binary Search}{19}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Template for Finding First/Last Position}{19}{subsection.10.1}%
+\contentsline {section}{\numberline {11}Dynamic Programming}{21}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Longest Increasing Subsequence}{21}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}0/1 Knapsack}{22}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Edit Distance (Levenshtein Distance)}{22}{subsection.11.3}%
+\contentsline {section}{\numberline {12}Array Techniques}{24}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Prefix Sum}{24}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Difference Array}{24}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Sliding Window}{25}{subsection.12.3}%
+\contentsline {section}{\numberline {13}Advanced Data Structures}{26}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Segment Tree}{26}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}Fenwick Tree (Binary Indexed Tree)}{27}{subsection.13.2}%
+\contentsline {subsection}{\numberline {13.3}Trie (Prefix Tree)}{27}{subsection.13.3}%
+\contentsline {section}{\numberline {14}Bit Manipulation}{29}{section.14}%
+\contentsline {section}{\numberline {15}Matrix Operations}{31}{section.15}%
+\contentsline {subsection}{\numberline {15.1}Matrix Multiplication}{31}{subsection.15.1}%
+\contentsline {subsection}{\numberline {15.2}Matrix Exponentiation}{31}{subsection.15.2}%
+\contentsline {section}{\numberline {16}Miscellaneous Tips}{33}{section.16}%
+\contentsline {subsection}{\numberline {16.1}Python-Specific Optimizations}{33}{subsection.16.1}%
+\contentsline {subsection}{\numberline {16.2}Useful Libraries}{33}{subsection.16.2}%
+\contentsline {subsection}{\numberline {16.3}Common Patterns}{33}{subsection.16.3}%
+\contentsline {subsection}{\numberline {16.4}Common Pitfalls}{34}{subsection.16.4}%

@@ -1,0 +1,37 @@
+\section{String Operations}
+
+\textbf{Description:} Strings in Python are immutable. For building strings, use list and join for O(n) complexity instead of repeated concatenation which is O(n²).
+
+\begin{lstlisting}
+# Common string methods
+s.lower(), s.upper()
+s.strip()   # remove whitespace both ends
+s.lstrip()  # remove left whitespace
+s.rstrip()  # remove right whitespace
+s.split(delimiter)
+delimiter.join(list)
+s.replace(old, new)
+s.startswith(prefix)
+s.endswith(suffix)
+s.isdigit(), s.isalpha(), s.isalnum()
+
+# String building - EFFICIENT O(n)
+result = []
+for x in data:
+    result.append(str(x))
+s = ''.join(result)
+
+# String concatenation - SLOW O(n^2)
+# s = ""
+# for x in data:
+#     s += str(x)  # Don't do this!
+
+# ASCII values
+ord('a')  # 97
+chr(97)   # 'a'
+
+# String to character array (for mutations)
+chars = list(s)
+chars[0] = 'x'
+s = ''.join(chars)
+\end{lstlisting}

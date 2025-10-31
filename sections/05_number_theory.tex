@@ -1,0 +1,70 @@
+\section{Number Theory}
+
+\textbf{Description:} Essential algorithms for problems involving primes, modular arithmetic, and divisibility.
+
+\subsection{Modular Arithmetic}
+\begin{lstlisting}
+# Modular inverse using Fermat's Little Theorem
+# Only works when mod is prime
+# a^(-1) = a^(mod-2) (mod p)
+def modinv(a, mod):
+    return pow(a, mod - 2, mod)
+
+# Extended Euclidean Algorithm
+# Returns (gcd, x, y) where ax + by = gcd(a,b)
+# Can find modular inverse for any coprime a,mod
+def extgcd(a, b):
+    if b == 0:
+        return a, 1, 0
+    g, x1, y1 = extgcd(b, a % b)
+    x = y1
+    y = x1 - (a // b) * y1
+    return g, x, y
+\end{lstlisting}
+
+\subsection{Sieve of Eratosthenes}
+\textbf{Description:} Find all primes up to n in O(n log log n) time. Memory: O(n).
+
+\begin{lstlisting}
+def sieve(n):
+    is_prime = [True] * (n + 1)
+    is_prime[0] = is_prime[1] = False
+    
+    for i in range(2, int(n**0.5) + 1):
+        if is_prime[i]:
+            # Mark multiples as composite
+            for j in range(i*i, n + 1, i):
+                is_prime[j] = False
+    
+    return is_prime
+
+# Get list of primes
+primes = [i for i in range(n+1) if is_prime[i]]
+\end{lstlisting}
+
+\subsection{Prime Factorization}
+\textbf{Description:} Decompose n into prime factors in O(sqrt(n)) time.
+
+\begin{lstlisting}
+def factorize(n):
+    factors = []
+    d = 2
+    
+    # Check divisors up to sqrt(n)
+    while d * d <= n:
+        while n % d == 0:
+            factors.append(d)
+            n //= d
+        d += 1
+    
+    # If n > 1, it's a prime factor
+    if n > 1:
+        factors.append(n)
+    
+    return factors
+
+# Get prime factors with counts
+from collections import Counter
+def prime_factor_counts(n):
+    return Counter(factorize(n))
+\end{lstlisting}

@@ -1,0 +1,123 @@
+\section{Dynamic Programming}
+
+\textbf{Description:} Solve problems by breaking them into overlapping subproblems. Store results to avoid recomputation.
+
+\subsection{Longest Increasing Subsequence}
+\textbf{Description:} Find length of longest strictly increasing subsequence. Time: O(n log n) using binary search.
+
+\begin{lstlisting}
+def lis(arr):
+    from bisect import bisect_left
+    
+    # dp[i] = smallest ending value of LIS of length i+1
+    dp = []
+    
+    for x in arr:
+        # Find position to place x
+        idx = bisect_left(dp, x)
+        
+        if idx == len(dp):
+            dp.append(x)  # Extend LIS
+        else:
+            dp[idx] = x   # Better ending for this length
+    
+    return len(dp)
+
+# LIS with actual sequence
+def lis_with_sequence(arr):
+    from bisect import bisect_left
+    
+    n = len(arr)
+    dp = []
+    parent = [-1] * n
+    dp_idx = []  # indices in dp
+    
+    for i, x in enumerate(arr):
+        idx = bisect_left(dp, x)
+        
+        if idx == len(dp):
+            dp.append(x)
+            dp_idx.append(i)
+        else:
+            dp[idx] = x
+            dp_idx[idx] = i
+        
+        if idx > 0:
+            parent[i] = dp_idx[idx - 1]
+    
+    # Reconstruct sequence
+    result = []
+    idx = dp_idx[-1]
+    while idx != -1:
+        result.append(arr[idx])
+        idx = parent[idx]
+    
+    return result[::-1]
+\end{lstlisting}
+
+\subsection{0/1 Knapsack}
+\textbf{Description:} Maximum value with weight capacity. Each item can be taken 0 or 1 time. Time: O(n×capacity), Space: O(n×capacity).
+
+\begin{lstlisting}
+def knapsack(weights, values, capacity):
+    n = len(weights)
+    # dp[i][w] = max value using first i items, 
+    #            weight <= w
+    dp = [[0] * (capacity + 1) for _ in range(n + 1)]
+    
+    for i in range(1, n + 1):
+        for w in range(capacity + 1):
+            # Don't take item i-1
+            dp[i][w] = dp[i-1][w]
+            
+            # Take item i-1 if it fits
+            if weights[i-1] <= w:
+                dp[i][w] = max(
+                    dp[i][w],
+                    dp[i-1][w - weights[i-1]] + values[i-1]
+                )
+    
+    return dp[n][capacity]
+
+# Space-optimized O(capacity)
+def knapsack_optimized(weights, values, capacity):
+    dp = [0] * (capacity + 1)
+    
+    for i in range(len(weights)):
+        # Iterate backwards to avoid using updated values
+        for w in range(capacity, weights[i] - 1, -1):
+            dp[w] = max(dp[w], 
+                       dp[w - weights[i]] + values[i])
+    
+    return dp[capacity]
+\end{lstlisting}
+
+\subsection{Edit Distance (Levenshtein Distance)}
+\textbf{Description:} Minimum operations (insert, delete, replace) to transform s1 to s2. Time: O(m×n), Space: O(m×n).
+
+\begin{lstlisting}
+def edit_dist(s1, s2):
+    m, n = len(s1), len(s2)
+    # dp[i][j] = edit distance of s1[:i] and s2[:j]
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+    
+    # Base cases: empty string transformations
+    for i in range(m + 1):
+        dp[i][0] = i  # Delete all
+    for j in range(n + 1):
+        dp[0][j] = j  # Insert all
+    
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if s1[i-1] == s2[j-1]:
+                # Characters match, no operation needed
+                dp[i][j] = dp[i-1][j-1]
+            else:
+                dp[i][j] = 1 + min(
+                    dp[i-1][j],      # Delete from s1
+                    dp[i][j-1],      # Insert into s1
+                    dp[i-1][j-1]     # Replace in s1
+                )
+    
+    return dp[m][n]
+\end{lstlisting}

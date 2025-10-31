@@ -1,0 +1,163 @@
+\section{Advanced Data Structures}
+
+\subsection{Segment Tree}
+\textbf{Description:} Supports range queries and point updates in O(log n). Can be modified for range updates with lazy propagation.
+
+\begin{lstlisting}
+class SegmentTree:
+    def __init__(self, arr):
+        self.n = len(arr)
+        # Tree size: 4n is safe upper bound
+        self.tree = [0] * (4 * self.n)
+        self.build(arr, 0, 0, self.n - 1)
+    
+    def build(self, arr, node, start, end):
+        if start == end:
+            # Leaf node
+            self.tree[node] = arr[start]
+        else:
+            mid = (start + end) // 2
+            # Build left and right subtrees
+            self.build(arr, 2*node+1, start, mid)
+            self.build(arr, 2*node+2, mid+1, end)
+            # Combine results (sum in this case)
+            self.tree[node] = (self.tree[2*node+1] + 
+                              self.tree[2*node+2])
+    
+    def update(self, node, start, end, idx, val):
+        if start == end:
+            # Leaf node - update value
+            self.tree[node] = val
+        else:
+            mid = (start + end) // 2
+            if idx <= mid:
+                # Update left subtree
+                self.update(2*node+1, start, mid, idx, val)
+            else:
+                # Update right subtree
+                self.update(2*node+2, mid+1, end, idx, val)
+            # Recompute parent
+            self.tree[node] = (self.tree[2*node+1] + 
+                              self.tree[2*node+2])
+    
+    def query(self, node, start, end, l, r):
+        # No overlap
+        if r < start or end < l:
+            return 0
+        
+        # Complete overlap
+        if l <= start and end <= r:
+            return self.tree[node]
+        
+        # Partial overlap
+        mid = (start + end) // 2
+        left_sum = self.query(2*node+1, start, mid, l, r)
+        right_sum = self.query(2*node+2, mid+1, end, l, r)
+        return left_sum + right_sum
+    
+    # Public interface
+    def update_val(self, idx, val):
+        self.update(0, 0, self.n-1, idx, val)
+    
+    def range_sum(self, l, r):
+        return self.query(0, 0, self.n-1, l, r)
+\end{lstlisting}
+
+\subsection{Fenwick Tree (Binary Indexed Tree)}
+\textbf{Description:} Simpler than segment tree, supports prefix sum and point updates in O(log n). More space efficient.
+
+\begin{lstlisting}
+class FenwickTree:
+    def __init__(self, n):
+        self.n = n
+        # 1-indexed for easier implementation
+        self.tree = [0] * (n + 1)
+    
+    def update(self, i, delta):
+        # Add delta to position i (1-indexed)
+        while i <= self.n:
+            self.tree[i] += delta
+            # Move to next node: add LSB
+            i += i & (-i)
+    
+    def query(self, i):
+        # Get prefix sum up to i (1-indexed)
+        s = 0
+        while i > 0:
+            s += self.tree[i]
+            # Move to parent: remove LSB
+            i -= i & (-i)
+        return s
+    
+    def range_query(self, l, r):
+        # Sum from l to r (1-indexed)
+        return self.query(r) - self.query(l - 1)
+
+# Usage example
+bit = FenwickTree(n)
+for i, val in enumerate(arr, 1):
+    bit.update(i, val)
+
+# Range sum [l, r] (1-indexed)
+result = bit.range_query(l, r)
+\end{lstlisting}
+
+\subsection{Trie (Prefix Tree)}
+\textbf{Description:} Tree for storing strings, enables fast prefix searches. Time: O(m) for operations where m is string length.
+
+\begin{lstlisting}
+class TrieNode:
+    def __init__(self):
+        self.children = {}  # char -> TrieNode
+        self.is_end = False  # End of word marker
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+    
+    def insert(self, word):
+        # Insert word - O(len(word))
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.is_end = True
+    
+    def search(self, word):
+        # Exact word search - O(len(word))
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return node.is_end
+    
+    def starts_with(self, prefix):
+        # Prefix search - O(len(prefix))
+        node = self.root
+        for char in prefix:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return True
+    
+    # Find all words with given prefix
+    def words_with_prefix(self, prefix):
+        node = self.root
+        for char in prefix:
+            if char not in node.children:
+                return []
+            node = node.children[char]
+        
+        # DFS to collect all words
+        words = []
+        def dfs(n, path):
+            if n.is_end:
+                words.append(prefix + path)
+            for char, child in n.children.items():
+                dfs(child, path + char)
+        
+        dfs(node, "")
+        return words
+\end{lstlisting}

@@ -1,0 +1,91 @@
+\section{Matrix Operations}
+
+\textbf{Description:} Matrix operations for DP optimization, graph algorithms, and recurrence relations.
+
+\subsection{Matrix Multiplication}
+\begin{lstlisting}
+# Standard matrix multiplication - O(n^3)
+def matmul(A, B):
+    n, m, p = len(A), len(A[0]), len(B[0])
+    C = [[0] * p for _ in range(n)]
+    
+    for i in range(n):
+        for j in range(p):
+            for k in range(m):
+                C[i][j] += A[i][k] * B[k][j]
+    
+    return C
+
+# With modulo
+def matmul_mod(A, B, mod):
+    n = len(A)
+    C = [[0] * n for _ in range(n)]
+    
+    for i in range(n):
+        for j in range(n):
+            for k in range(n):
+                C[i][j] = (C[i][j] + 
+                          A[i][k] * B[k][j]) % mod
+    
+    return C
+\end{lstlisting}
+
+\subsection{Matrix Exponentiation}
+\textbf{Description:} Compute M\textsuperscript{n} in O(k\textsuperscript{3} log n) where k is matrix dimension. Used for solving linear recurrences efficiently.
+
+\begin{lstlisting}
+def matpow(M, n, mod):
+    size = len(M)
+    
+    # Identity matrix
+    result = [[1 if i==j else 0 
+               for j in range(size)] 
+              for i in range(size)]
+    
+    # Binary exponentiation
+    while n > 0:
+        if n & 1:
+            result = matmul_mod(result, M, mod)
+        M = matmul_mod(M, M, mod)
+        n >>= 1
+    
+    return result
+
+# Example: Fibonacci using matrix exponentiation
+# F(n) = [[1,1],[1,0]]^n
+def fibonacci(n, mod):
+    if n == 0: return 0
+    if n == 1: return 1
+    
+    M = [[1, 1], [1, 0]]
+    result = matpow(M, n - 1, mod)
+    return result[0][0]
+
+# Linear recurrence: a(n) = c1*a(n-1) + c2*a(n-2) + ...
+# Build transition matrix and use matrix exponentiation
+def linear_recurrence(coeffs, init, n, mod):
+    k = len(coeffs)
+    
+    # Transition matrix
+    # [a(n), a(n-1), ..., a(n-k+1)]
+    M = [[0] * k for _ in range(k)]
+    M[0] = coeffs  # First row
+    for i in range(1, k):
+        M[i][i-1] = 1  # Identity for shifting
+    
+    # Initial state vector
+    state = init[::-1]  # Reverse order
+    
+    if n < k:
+        return init[n]
+    
+    # M^(n-k+1)
+    result_matrix = matpow(M, n - k + 1, mod)
+    
+    # Multiply with initial state
+    result = 0
+    for i in range(k):
+        result = (result + result_matrix[0][i] * state[i]) % mod
+    
+    return result
+\end{lstlisting}

@@ -1,0 +1,116 @@
+\section{Graph Algorithms}
+
+\subsection{Graph Representation}
+\textbf{Description:} Adjacency list is most common for sparse graphs. Use defaultdict for convenience.
+
+\begin{lstlisting}
+from collections import defaultdict, deque
+
+# Unweighted graph
+graph = defaultdict(list)
+for _ in range(m):
+    u, v = map(int, input().split())
+    graph[u].append(v)
+    graph[v].append(u)  # for undirected
+
+# Weighted graph - store (neighbor, weight) tuples
+graph[u].append((v, weight))
+\end{lstlisting}
+
+\subsection{BFS (Breadth-First Search)}
+\textbf{Description:} Explores graph level by level. Finds shortest path in unweighted graphs. Time: O(V+E), Space: O(V).
+
+\begin{lstlisting}
+def bfs(graph, start):
+    visited = set([start])
+    queue = deque([start])
+    dist = {start: 0}
+    
+    while queue:
+        node = queue.popleft()
+        
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+                dist[neighbor] = dist[node] + 1
+    
+    return dist
+
+# Grid BFS - common in maze/path problems
+def grid_bfs(grid, start):
+    n, m = len(grid), len(grid[0])
+    visited = [[False] * m for _ in range(n)]
+    queue = deque([start])
+    visited[start[0]][start[1]] = True
+    
+    # 4 directions: right, down, left, up
+    dirs = [(0,1), (1,0), (0,-1), (-1,0)]
+    
+    while queue:
+        x, y = queue.popleft()
+        
+        for dx, dy in dirs:
+            nx, ny = x + dx, y + dy
+            
+            # Check bounds and validity
+            if (0 <= nx < n and 0 <= ny < m 
+                and not visited[nx][ny] 
+                and grid[nx][ny] != '#'):
+                
+                visited[nx][ny] = True
+                queue.append((nx, ny))
+\end{lstlisting}
+
+\subsection{DFS (Depth-First Search)}
+\textbf{Description:} Explores as far as possible along each branch. Used for connectivity, cycles, topological sort. Time: O(V+E), Space: O(V).
+
+\begin{lstlisting}
+# Recursive DFS
+def dfs(graph, node, visited):
+    visited.add(node)
+    
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            dfs(graph, neighbor, visited)
+
+# Iterative DFS using stack
+def dfs_iterative(graph, start):
+    visited = set()
+    stack = [start]
+    
+    while stack:
+        node = stack.pop()
+        
+        if node not in visited:
+            visited.add(node)
+            
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    stack.append(neighbor)
+
+# Cycle detection in undirected graph
+def has_cycle(graph, n):
+    visited = [False] * n
+    
+    def dfs(node, parent):
+        visited[node] = True
+        
+        for neighbor in graph[node]:
+            if not visited[neighbor]:
+                if dfs(neighbor, node):
+                    return True
+            # Back edge to non-parent = cycle
+            elif neighbor != parent:
+                return True
+        
+        return False
+    
+    # Check all components
+    for i in range(n):
+        if not visited[i]:
+            if dfs(i, -1):
+                return True
+    
+    return False
+\end{lstlisting}

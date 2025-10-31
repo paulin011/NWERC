@@ -1,0 +1,952 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2cm]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+
+% Compact spacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+\titlespacing*{\subsection}{0pt}{6pt}{3pt}
+
+% Code listing style
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{gray}\itshape,
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    showstringspaces=false,
+    tabsize=4,
+    frame=single,
+    frameround=tttt,
+    columns=flexible,
+    keepspaces=true
+}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Python ICPC Cheatsheet},
+    pdfauthor={ICPC Contestant},
+}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE\bfseries Python ICPC Cheatsheet}\\[0.5em]
+    {\large Comprehensive Reference for Competitive Programming}\\[0.5em]
+    \today
+\end{center}
+
+\tableofcontents
+\newpage
+
+% Include all sections
+\input{sections/01_io}
+\newpage
+
+\input{sections/02_data_structures}
+\newpage
+
+\input{sections/03_strings}
+\newpage
+
+\input{sections/04_math}
+\newpage
+
+\input{sections/05_number_theory}
+\newpage
+
+\input{sections/06_graphs}
+\newpage
+
+\input{sections/07_shortest_paths}
+\newpage
+
+\input{sections/08_topological_sort}
+\newpage
+
+\input{sections/09_union_find}
+\newpage
+
+\input{sections/10_binary_search}
+\newpage
+
+\input{sections/11_dynamic_programming}
+\newpage
+
+\input{sections/12_arrays}
+\newpage
+
+\input{sections/13_advanced_structures}
+\newpage
+
+\input{sections/14_bit_manipulation}
+\newpage
+
+\input{sections/15_matrix}
+\newpage
+
+\input{sections/16_tips}
+
+\end{document}
+\begin{lstlisting}
+# Fast I/O
+import sys
+input = sys.stdin.readline
+
+# Read integers
+n = int(input())
+a, b = map(int, input().split())
+arr = list(map(int, input().split()))
+
+# Read strings
+s = input().strip()
+words = input().split()
+
+# Multiple test cases
+t = int(input())
+for _ in range(t):
+    # process
+
+# Print without newline
+print(x, end=' ')
+
+# Formatted output
+print(f"{x:.6f}")  # 6 decimals
+\end{lstlisting}
+
+\subsection*{List Operations}
+\begin{lstlisting}
+# Initialize
+arr = [0] * n
+matrix = [[0] * m for _ in range(n)]
+
+# List comprehension
+squares = [x**2 for x in range(n)]
+evens = [x for x in arr if x % 2 == 0]
+
+# Sorting
+arr.sort()  # in-place
+arr.sort(reverse=True)
+arr.sort(key=lambda x: (x[0], -x[1]))
+sorted_arr = sorted(arr)
+
+# Binary search
+from bisect import bisect_left, bisect_right
+idx = bisect_left(arr, x)  # leftmost
+idx = bisect_right(arr, x)  # rightmost
+
+# Useful operations
+arr.append(x)
+arr.pop()  # last element
+arr.pop(0)  # first (O(n))
+arr.reverse()
+arr.count(x)
+arr.index(x)  # first occurrence
+\end{lstlisting}
+
+\subsection*{Deque (Double-ended Queue)}
+\begin{lstlisting}
+from collections import deque
+dq = deque()
+
+dq.append(x)      # add to right O(1)
+dq.appendleft(x)  # add to left O(1)
+dq.pop()          # remove from right O(1)
+dq.popleft()      # remove from left O(1)
+
+# Sliding window maximum
+def sliding_max(arr, k):
+    dq = deque()
+    result = []
+    for i in range(len(arr)):
+        # Remove out of window
+        while dq and dq[0] < i - k + 1:
+            dq.popleft()
+        # Remove smaller elements
+        while dq and arr[dq[-1]] < arr[i]:
+            dq.pop()
+        dq.append(i)
+        if i >= k - 1:
+            result.append(arr[dq[0]])
+    return result
+\end{lstlisting}
+
+\subsection*{Heap (Priority Queue)}
+\begin{lstlisting}
+import heapq
+
+# Min heap (default)
+heap = []
+heapq.heappush(heap, x)
+min_val = heapq.heappop(heap)
+min_val = heap[0]  # peek
+
+# Max heap (negate values)
+heapq.heappush(heap, -x)
+max_val = -heapq.heappop(heap)
+
+# Heapify existing list
+heapq.heapify(arr)
+
+# K largest/smallest
+k_largest = heapq.nlargest(k, arr)
+k_smallest = heapq.nsmallest(k, arr)
+
+# Custom comparator (use tuples)
+heapq.heappush(heap, (priority, item))
+\end{lstlisting}
+
+\subsection*{Dictionary \& Counter}
+\begin{lstlisting}
+from collections import defaultdict, Counter
+
+# defaultdict
+graph = defaultdict(list)
+count = defaultdict(int)
+
+# Counter
+cnt = Counter(arr)
+cnt['x'] += 1
+most_common = cnt.most_common(k)
+
+# Dictionary operations
+d = {}
+d.get(key, default_val)
+d.setdefault(key, default_val)
+for k, v in d.items():
+    pass
+\end{lstlisting}
+
+\subsection*{Set Operations}
+\begin{lstlisting}
+s = set()
+s.add(x)
+s.remove(x)  # KeyError if not exists
+s.discard(x)  # no error
+
+# Set operations
+a | b  # union
+a & b  # intersection
+a - b  # difference
+a ^ b  # symmetric difference
+
+# Ordered set (using dict)
+from collections import OrderedDict
+oset = OrderedDict.fromkeys([])
+\end{lstlisting}
+
+\subsection*{String Operations}
+\begin{lstlisting}
+# Common methods
+s.lower(), s.upper()
+s.strip(), s.lstrip(), s.rstrip()
+s.split(delimiter)
+delimiter.join(list)
+s.replace(old, new)
+s.startswith(prefix)
+s.endswith(suffix)
+s.isdigit(), s.isalpha(), s.isalnum()
+
+# String building (efficient)
+result = []
+for x in data:
+    result.append(str(x))
+s = ''.join(result)
+
+# ASCII values
+ord('a')  # 97
+chr(97)   # 'a'
+\end{lstlisting}
+
+\subsection*{Math Operations}
+\begin{lstlisting}
+import math
+
+# Common functions
+math.ceil(x), math.floor(x)
+math.gcd(a, b)
+math.lcm(a, b)  # Python 3.9+
+math.sqrt(x)
+math.log(x), math.log2(x), math.log10(x)
+
+# Powers
+x ** y
+pow(x, y, mod)  # (x^y) % mod
+
+# Infinity
+float('inf'), float('-inf')
+
+# Custom GCD/LCM
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def lcm(a, b):
+    return a * b // gcd(a, b)
+\end{lstlisting}
+
+\subsection*{Combinatorics}
+\begin{lstlisting}
+from math import factorial, comb, perm
+
+# nCr (combinations)
+comb(n, r)
+
+# nPr (permutations)
+perm(n, r)
+
+# Manual implementation
+def ncr(n, r):
+    if r > n: return 0
+    r = min(r, n - r)
+    num = den = 1
+    for i in range(r):
+        num *= (n - i)
+        den *= (i + 1)
+    return num // den
+
+# Modular factorial
+MOD = 10**9 + 7
+def modfact(n):
+    fact = [1] * (n + 1)
+    for i in range(1, n + 1):
+        fact[i] = fact[i-1] * i % MOD
+    return fact
+\end{lstlisting}
+
+\subsection*{Number Theory}
+\begin{lstlisting}
+# Modular inverse (Fermat's little theorem)
+def modinv(a, mod):
+    return pow(a, mod - 2, mod)
+
+# Sieve of Eratosthenes
+def sieve(n):
+    is_prime = [True] * (n + 1)
+    is_prime[0] = is_prime[1] = False
+    for i in range(2, int(n**0.5) + 1):
+        if is_prime[i]:
+            for j in range(i*i, n + 1, i):
+                is_prime[j] = False
+    return is_prime
+
+# Prime factorization
+def factorize(n):
+    factors = []
+    d = 2
+    while d * d <= n:
+        while n % d == 0:
+            factors.append(d)
+            n //= d
+        d += 1
+    if n > 1:
+        factors.append(n)
+    return factors
+
+# Extended Euclidean Algorithm
+def extgcd(a, b):
+    if b == 0:
+        return a, 1, 0
+    g, x1, y1 = extgcd(b, a % b)
+    return g, y1, x1 - (a // b) * y1
+\end{lstlisting}
+
+\subsection*{Graph - Adjacency List}
+\begin{lstlisting}
+from collections import defaultdict, deque
+
+# Build graph
+graph = defaultdict(list)
+for _ in range(m):
+    u, v = map(int, input().split())
+    graph[u].append(v)
+    graph[v].append(u)  # undirected
+
+# Weighted graph
+graph[u].append((v, weight))
+\end{lstlisting}
+
+\subsection*{BFS (Shortest Path)}
+\begin{lstlisting}
+def bfs(graph, start):
+    visited = set([start])
+    queue = deque([start])
+    dist = {start: 0}
+    
+    while queue:
+        node = queue.popleft()
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+                dist[neighbor] = dist[node] + 1
+    return dist
+
+# Grid BFS
+def grid_bfs(grid, start):
+    n, m = len(grid), len(grid[0])
+    visited = [[False] * m for _ in range(n)]
+    queue = deque([start])
+    visited[start[0]][start[1]] = True
+    
+    dirs = [(0,1), (1,0), (0,-1), (-1,0)]
+    while queue:
+        x, y = queue.popleft()
+        for dx, dy in dirs:
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < n and 0 <= ny < m \
+               and not visited[nx][ny] \
+               and grid[nx][ny] != '#':
+                visited[nx][ny] = True
+                queue.append((nx, ny))
+\end{lstlisting}
+
+\subsection*{DFS}
+\begin{lstlisting}
+def dfs(graph, node, visited):
+    visited.add(node)
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            dfs(graph, neighbor, visited)
+
+# Iterative DFS
+def dfs_iterative(graph, start):
+    visited = set()
+    stack = [start]
+    
+    while stack:
+        node = stack.pop()
+        if node not in visited:
+            visited.add(node)
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    stack.append(neighbor)
+
+# Cycle detection (undirected)
+def has_cycle(graph, n):
+    visited = [False] * n
+    
+    def dfs(node, parent):
+        visited[node] = True
+        for neighbor in graph[node]:
+            if not visited[neighbor]:
+                if dfs(neighbor, node):
+                    return True
+            elif neighbor != parent:
+                return True
+        return False
+    
+    for i in range(n):
+        if not visited[i]:
+            if dfs(i, -1):
+                return True
+    return False
+\end{lstlisting}
+
+\subsection*{Dijkstra's Algorithm}
+\begin{lstlisting}
+import heapq
+
+def dijkstra(graph, start, n):
+    dist = [float('inf')] * n
+    dist[start] = 0
+    heap = [(0, start)]
+    
+    while heap:
+        d, node = heapq.heappop(heap)
+        if d > dist[node]:
+            continue
+        
+        for neighbor, weight in graph[node]:
+            new_dist = dist[node] + weight
+            if new_dist < dist[neighbor]:
+                dist[neighbor] = new_dist
+                heapq.heappush(heap, 
+                    (new_dist, neighbor))
+    return dist
+\end{lstlisting}
+
+\subsection*{Topological Sort}
+\begin{lstlisting}
+from collections import deque
+
+# Kahn's algorithm (BFS)
+def topo_sort(graph, n):
+    indegree = [0] * n
+    for u in range(n):
+        for v in graph[u]:
+            indegree[v] += 1
+    
+    queue = deque([i for i in range(n) 
+                   if indegree[i] == 0])
+    result = []
+    
+    while queue:
+        node = queue.popleft()
+        result.append(node)
+        for neighbor in graph[node]:
+            indegree[neighbor] -= 1
+            if indegree[neighbor] == 0:
+                queue.append(neighbor)
+    
+    return result if len(result) == n \
+           else []  # cycle exists
+
+# DFS-based
+def topo_dfs(graph, n):
+    visited = [False] * n
+    stack = []
+    
+    def dfs(node):
+        visited[node] = True
+        for neighbor in graph[node]:
+            if not visited[neighbor]:
+                dfs(neighbor)
+        stack.append(node)
+    
+    for i in range(n):
+        if not visited[i]:
+            dfs(i)
+    
+    return stack[::-1]
+\end{lstlisting}
+
+\subsection*{Union-Find (Disjoint Set)}
+\begin{lstlisting}
+class UnionFind:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.rank = [0] * n
+    
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(
+                self.parent[x])  # compression
+        return self.parent[x]
+    
+    def union(self, x, y):
+        px, py = self.find(x), self.find(y)
+        if px == py:
+            return False
+        if self.rank[px] < self.rank[py]:
+            px, py = py, px
+        self.parent[py] = px
+        if self.rank[px] == self.rank[py]:
+            self.rank[px] += 1
+        return True
+    
+    def connected(self, x, y):
+        return self.find(x) == self.find(y)
+\end{lstlisting}
+
+\subsection*{Binary Search}
+\begin{lstlisting}
+# Find first True
+def binary_search_first(left, right, check):
+    while left < right:
+        mid = (left + right) // 2
+        if check(mid):
+            right = mid
+        else:
+            left = mid + 1
+    return left
+
+# Find last True
+def binary_search_last(left, right, check):
+    while left < right:
+        mid = (left + right + 1) // 2
+        if check(mid):
+            left = mid
+        else:
+            right = mid - 1
+    return left
+
+# Example: find sqrt
+def sqrt_binary(n):
+    left, right = 0, n
+    while left < right:
+        mid = (left + right + 1) // 2
+        if mid * mid <= n:
+            left = mid
+        else:
+            right = mid - 1
+    return left
+\end{lstlisting}
+
+\subsection*{Dynamic Programming - Common Patterns}
+\begin{lstlisting}
+# Longest Increasing Subsequence O(n log n)
+def lis(arr):
+    from bisect import bisect_left
+    dp = []
+    for x in arr:
+        idx = bisect_left(dp, x)
+        if idx == len(dp):
+            dp.append(x)
+        else:
+            dp[idx] = x
+    return len(dp)
+
+# Knapsack 0/1
+def knapsack(weights, values, capacity):
+    n = len(weights)
+    dp = [[0] * (capacity + 1) 
+          for _ in range(n + 1)]
+    
+    for i in range(1, n + 1):
+        for w in range(capacity + 1):
+            dp[i][w] = dp[i-1][w]
+            if weights[i-1] <= w:
+                dp[i][w] = max(dp[i][w],
+                    dp[i-1][w-weights[i-1]] + 
+                    values[i-1])
+    return dp[n][capacity]
+
+# Edit distance
+def edit_dist(s1, s2):
+    m, n = len(s1), len(s2)
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+    
+    for i in range(m + 1):
+        dp[i][0] = i
+    for j in range(n + 1):
+        dp[0][j] = j
+    
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if s1[i-1] == s2[j-1]:
+                dp[i][j] = dp[i-1][j-1]
+            else:
+                dp[i][j] = 1 + min(
+                    dp[i-1][j],    # delete
+                    dp[i][j-1],    # insert
+                    dp[i-1][j-1])  # replace
+    return dp[m][n]
+\end{lstlisting}
+
+\subsection*{Prefix Sum \& Difference Array}
+\begin{lstlisting}
+# Prefix sum
+prefix = [0] * (n + 1)
+for i in range(n):
+    prefix[i + 1] = prefix[i] + arr[i]
+
+# Range sum [l, r]
+range_sum = prefix[r + 1] - prefix[l]
+
+# 2D prefix sum
+prefix = [[0] * (m + 1) for _ in range(n + 1)]
+for i in range(1, n + 1):
+    for j in range(1, m + 1):
+        prefix[i][j] = matrix[i-1][j-1] + \
+            prefix[i-1][j] + prefix[i][j-1] - \
+            prefix[i-1][j-1]
+
+# Rectangle sum (x1,y1) to (x2,y2)
+rect_sum = prefix[x2+1][y2+1] - \
+    prefix[x1][y2+1] - prefix[x2+1][y1] + \
+    prefix[x1][y1]
+
+# Difference array (range updates)
+diff = [0] * (n + 1)
+# Add val to range [l, r]
+diff[l] += val
+diff[r + 1] -= val
+# Reconstruct
+for i in range(1, n):
+    diff[i] += diff[i - 1]
+\end{lstlisting}
+
+\subsection*{Sliding Window}
+\begin{lstlisting}
+# Fixed size window
+def max_sum_window(arr, k):
+    window_sum = sum(arr[:k])
+    max_sum = window_sum
+    
+    for i in range(k, len(arr)):
+        window_sum += arr[i] - arr[i - k]
+        max_sum = max(max_sum, window_sum)
+    return max_sum
+
+# Variable size window
+def min_subarray_sum(arr, target):
+    left = 0
+    current_sum = 0
+    min_len = float('inf')
+    
+    for right in range(len(arr)):
+        current_sum += arr[right]
+        
+        while current_sum >= target:
+            min_len = min(min_len, 
+                         right - left + 1)
+            current_sum -= arr[left]
+            left += 1
+    
+    return min_len if min_len != \
+           float('inf') else 0
+\end{lstlisting}
+
+\subsection*{Segment Tree}
+\begin{lstlisting}
+class SegmentTree:
+    def __init__(self, arr):
+        self.n = len(arr)
+        self.tree = [0] * (4 * self.n)
+        self.build(arr, 0, 0, self.n - 1)
+    
+    def build(self, arr, node, start, end):
+        if start == end:
+            self.tree[node] = arr[start]
+        else:
+            mid = (start + end) // 2
+            self.build(arr, 2*node+1, 
+                      start, mid)
+            self.build(arr, 2*node+2, 
+                      mid+1, end)
+            self.tree[node] = self.tree[2*node+1] \
+                            + self.tree[2*node+2]
+    
+    def update(self, node, start, end, idx, val):
+        if start == end:
+            self.tree[node] = val
+        else:
+            mid = (start + end) // 2
+            if idx <= mid:
+                self.update(2*node+1, start, 
+                           mid, idx, val)
+            else:
+                self.update(2*node+2, mid+1, 
+                           end, idx, val)
+            self.tree[node] = self.tree[2*node+1] \
+                            + self.tree[2*node+2]
+    
+    def query(self, node, start, end, l, r):
+        if r < start or end < l:
+            return 0
+        if l <= start and end <= r:
+            return self.tree[node]
+        mid = (start + end) // 2
+        return self.query(2*node+1, start, mid, l, r) \
+             + self.query(2*node+2, mid+1, end, l, r)
+\end{lstlisting}
+
+\subsection*{Fenwick Tree (BIT)}
+\begin{lstlisting}
+class FenwickTree:
+    def __init__(self, n):
+        self.n = n
+        self.tree = [0] * (n + 1)
+    
+    def update(self, i, delta):
+        while i <= self.n:
+            self.tree[i] += delta
+            i += i & (-i)
+    
+    def query(self, i):
+        s = 0
+        while i > 0:
+            s += self.tree[i]
+            i -= i & (-i)
+        return s
+    
+    def range_query(self, l, r):
+        return self.query(r) - self.query(l - 1)
+\end{lstlisting}
+
+\subsection*{Trie (Prefix Tree)}
+\begin{lstlisting}
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.is_end = False
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+    
+    def insert(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.is_end = True
+    
+    def search(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return node.is_end
+    
+    def starts_with(self, prefix):
+        node = self.root
+        for char in prefix:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return True
+\end{lstlisting}
+
+\subsection*{Bit Manipulation}
+\begin{lstlisting}
+# Check if i-th bit is set
+(n >> i) & 1
+
+# Set i-th bit
+n |= (1 << i)
+
+# Clear i-th bit
+n &= ~(1 << i)
+
+# Toggle i-th bit
+n ^= (1 << i)
+
+# Count set bits
+bin(n).count('1')
+n.bit_count()  # Python 3.10+
+
+# Lowest set bit
+n & -n
+
+# Remove lowest set bit
+n & (n - 1)
+
+# Check power of 2
+n > 0 and (n & (n - 1)) == 0
+
+# Iterate over all subsets
+for mask in range(1 << n):
+    subset = [i for i in range(n) 
+              if mask & (1 << i)]
+
+# XOR tricks
+# a ^ a = 0
+# a ^ 0 = a
+# Find unique: reduce(lambda x,y: x^y, arr)
+\end{lstlisting}
+
+\subsection*{Matrix Operations}
+\begin{lstlisting}
+# Matrix multiplication
+def matmul(A, B):
+    n, m, p = len(A), len(A[0]), len(B[0])
+    C = [[0] * p for _ in range(n)]
+    for i in range(n):
+        for j in range(p):
+            for k in range(m):
+                C[i][j] += A[i][k] * B[k][j]
+    return C
+
+# Matrix exponentiation (mod)
+def matpow(M, n, mod):
+    size = len(M)
+    result = [[1 if i==j else 0 
+               for j in range(size)] 
+              for i in range(size)]
+    
+    while n > 0:
+        if n & 1:
+            result = matmul_mod(result, M, mod)
+        M = matmul_mod(M, M, mod)
+        n >>= 1
+    return result
+
+def matmul_mod(A, B, mod):
+    n = len(A)
+    C = [[0] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            for k in range(n):
+                C[i][j] = (C[i][j] + 
+                          A[i][k] * B[k][j]) % mod
+    return C
+
+# Fibonacci using matrix exp
+# F(n) = [[1,1],[1,0]]^n
+\end{lstlisting}
+
+\subsection*{Miscellaneous Tips}
+\begin{lstlisting}
+# Fast input for large datasets
+import sys
+input = sys.stdin.readline
+
+# Recursion limit
+sys.setrecursionlimit(10**6)
+
+# Deep copy
+from copy import deepcopy
+new_list = deepcopy(old_list)
+
+# Iterator tools
+from itertools import *
+# permutations, combinations
+# accumulate, product, chain
+
+# Lambda sorting
+arr.sort(key=lambda x: (-x[0], x[1]))
+
+# All/Any
+all(x > 0 for x in arr)
+any(x > 0 for x in arr)
+
+# Zip
+for a, b in zip(list1, list2):
+    pass
+
+# Enumerate
+for i, val in enumerate(arr):
+    pass
+
+# Custom comparison
+from functools import cmp_to_key
+arr.sort(key=cmp_to_key(compare_fn))
+\end{lstlisting}
+
+\subsection*{Common Pitfalls}
+\begin{lstlisting}
+# Integer division
+a // b  # floor division
+-7 // 3  # -3 (not -2)
+
+# Modulo with negative
+(-5) % 3  # 1 (not -2)
+
+# List multiplication pitfall
+matrix = [[0] * m] * n  # WRONG!
+# All rows reference same list
+
+# Correct way
+matrix = [[0] * m for _ in range(n)]
+
+# Float comparison
+abs(a - b) < 1e-9
+
+# String immutability
+s = "abc"
+s[0] = 'd'  # ERROR
+s = 'd' + s[1:]  # OK
+# Use list for mutable strings
+\end{lstlisting}
+
+\end{multicols*}
+\end{document}

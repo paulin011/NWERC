@@ -1,0 +1,63 @@
+\section{Union-Find (Disjoint Set Union)}
+
+\textbf{Description:} Efficiently tracks disjoint sets and supports union and find operations. Used for Kruskal's MST, connected components, cycle detection. Time: O($\alpha$(n)) $\approx$ O(1) per operation with path compression and union by rank.
+
+\textbf{Applications:}
+\begin{itemize}
+\item Kruskal's minimum spanning tree
+\item Detecting cycles in undirected graphs
+\item Finding connected components
+\item Network connectivity problems
+\end{itemize}
+
+\begin{lstlisting}
+class UnionFind:
+    def __init__(self, n):
+        # Each node is its own parent initially
+        self.parent = list(range(n))
+        # Rank for union by rank optimization
+        self.rank = [0] * n
+    
+    def find(self, x):
+        # Path compression: point directly to root
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+    
+    def union(self, x, y):
+        # Find roots
+        px, py = self.find(x), self.find(y)
+        
+        # Already in same set
+        if px == py:
+            return False
+        
+        # Union by rank: attach smaller tree under larger
+        if self.rank[px] < self.rank[py]:
+            px, py = py, px
+        
+        self.parent[py] = px
+        
+        # Increase rank if trees had equal rank
+        if self.rank[px] == self.rank[py]:
+            self.rank[px] += 1
+        
+        return True
+    
+    def connected(self, x, y):
+        return self.find(x) == self.find(y)
+    
+    # Count number of disjoint sets
+    def count_sets(self):
+        return len(set(self.find(i) 
+                   for i in range(len(self.parent))))
+
+# Example: Detect cycle in undirected graph
+def has_cycle_uf(edges, n):
+    uf = UnionFind(n)
+    for u, v in edges:
+        if uf.connected(u, v):
+            return True  # Cycle found
+        uf.union(u, v)
+    return False
+\end{lstlisting}

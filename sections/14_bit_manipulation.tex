@@ -1,0 +1,83 @@
+\section{Bit Manipulation}
+
+\textbf{Description:} Efficient operations using bitwise operators. Useful for sets, flags, and optimization.
+
+\begin{lstlisting}
+# Check if i-th bit (0-indexed) is set
+is_set = (n >> i) & 1
+
+# Set i-th bit to 1
+n |= (1 << i)
+
+# Clear i-th bit (set to 0)
+n &= ~(1 << i)
+
+# Toggle i-th bit
+n ^= (1 << i)
+
+# Count set bits (popcount)
+count = bin(n).count('1')
+count = n.bit_count()  # Python 3.10+
+
+# Get lowest set bit
+lsb = n & -n  # Also n & (~n + 1)
+
+# Remove lowest set bit
+n &= (n - 1)
+
+# Check if power of 2
+is_pow2 = n > 0 and (n & (n - 1)) == 0
+
+# Check if power of 4
+is_pow4 = n > 0 and (n & (n-1)) == 0 and (n & 0x55555555) != 0
+
+# Iterate over all subsets of set represented by mask
+mask = (1 << n) - 1  # All bits set
+submask = mask
+while submask > 0:
+    # Process submask
+    submask = (submask - 1) & mask
+
+# Iterate through all k-bit masks
+def iterate_k_bits(n, k):
+    mask = (1 << k) - 1
+    while mask < (1 << n):
+        # Process mask
+        yield mask
+        # Gosper's hack
+        c = mask & -mask
+        r = mask + c
+        mask = (((r ^ mask) >> 2) // c) | r
+
+# XOR properties
+# a ^ a = 0 (number XOR itself is 0)
+# a ^ 0 = a (number XOR 0 is itself)
+# XOR is commutative and associative
+# Find unique element when all others appear twice:
+def find_unique(arr):
+    result = 0
+    for x in arr:
+        result ^= x
+    return result
+
+# Subset enumeration
+n = 5  # Number of elements
+for mask in range(1 << n):
+    subset = [i for i in range(n) if mask & (1 << i)]
+    # Process subset
+
+# Check parity (odd/even number of 1s)
+def parity(n):
+    count = 0
+    while n:
+        count ^= 1
+        n &= n - 1
+    return count  # 1 if odd, 0 if even
+
+# Swap two numbers without temp variable
+a, b = 5, 10
+a ^= b
+b ^= a
+a ^= b
+# Now a=10, b=5
+\end{lstlisting}

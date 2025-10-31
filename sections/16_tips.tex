@@ -1,0 +1,135 @@
+\section{Miscellaneous Tips}
+
+\subsection{Python-Specific Optimizations}
+\begin{lstlisting}
+# Fast input for large datasets
+import sys
+input = sys.stdin.readline
+
+# Increase recursion limit for deep DFS/DP
+sys.setrecursionlimit(10**6)
+
+# Deep copy (be careful with performance)
+from copy import deepcopy
+new_list = deepcopy(old_list)
+\end{lstlisting}
+
+\subsection{Useful Libraries}
+\begin{lstlisting}
+# Iterator tools - powerful combinations
+from itertools import *
+
+# permutations(iterable, r) - all r-length permutations
+perms = list(permutations([1,2,3], 2))
+# [(1,2), (1,3), (2,1), (2,3), (3,1), (3,2)]
+
+# combinations(iterable, r) - r-length combinations
+combs = list(combinations([1,2,3], 2))
+# [(1,2), (1,3), (2,3)]
+
+# product - cartesian product
+prod = list(product([1,2], ['a','b']))
+# [(1,'a'), (1,'b'), (2,'a'), (2,'b')]
+
+# accumulate - running totals
+acc = list(accumulate([1,2,3,4]))
+# [1, 3, 6, 10]
+
+# chain - flatten iterables
+chained = list(chain([1,2], [3,4]))
+# [1, 2, 3, 4]
+\end{lstlisting}
+
+\subsection{Common Patterns}
+\begin{lstlisting}
+# Lambda sorting with multiple keys
+arr.sort(key=lambda x: (-x[0], x[1]))
+# Sort by first desc, then second asc
+
+# All/Any - short-circuit evaluation
+all(x > 0 for x in arr)  # True if all positive
+any(x > 0 for x in arr)  # True if any positive
+
+# Zip - parallel iteration
+for a, b in zip(list1, list2):
+    pass
+
+# Enumerate - index and value
+for i, val in enumerate(arr):
+    print(f"arr[{i}] = {val}")
+
+# Custom comparison function
+from functools import cmp_to_key
+
+def compare(a, b):
+    # Return -1 if a < b, 0 if equal, 1 if a > b
+    if a + b > b + a:
+        return -1
+    return 1
+
+arr.sort(key=cmp_to_key(compare))
+
+# DefaultDict with lambda
+from collections import defaultdict
+d = defaultdict(lambda: float('inf'))
+
+# Multiple assignment
+a, b = b, a  # Swap
+a, *rest, b = [1,2,3,4,5]  # a=1, rest=[2,3,4], b=5
+\end{lstlisting}
+
+\subsection{Common Pitfalls}
+\begin{lstlisting}
+# Integer division - floors toward negative infinity
+print(7 // 3)    # 2
+print(-7 // 3)   # -3 (not -2!)
+
+# For ceiling division toward zero:
+def div_ceil(a, b):
+    return -(-a // b)
+
+# Modulo with negative numbers
+print((-5) % 3)  # 1 (not -2!)
+print(5 % -3)    # -1
+
+# List multiplication creates references!
+matrix = [[0] * m] * n  # WRONG! All rows same object
+matrix[0][0] = 1        # Changes all rows!
+
+# Correct way
+matrix = [[0] * m for _ in range(n)]
+
+# Float comparison - don't use ==
+a, b = 0.1 + 0.2, 0.3
+print(a == b)  # False!
+
+# Use epsilon comparison
+eps = 1e-9
+print(abs(a - b) < eps)  # True
+
+# String immutability
+s = "abc"
+# s[0] = 'd'  # ERROR!
+s = 'd' + s[1:]  # OK
+
+# For many string mutations, use list
+chars = list(s)
+chars[0] = 'd'
+s = ''.join(chars)
+
+# Mutable default arguments - dangerous!
+def func(arr=[]):  # WRONG!
+    arr.append(1)
+    return arr
+
+# Each call modifies same list
+print(func())  # [1]
+print(func())  # [1, 1]
+
+# Correct way
+def func(arr=None):
+    if arr is None:
+        arr = []
+    arr.append(1)
+    return arr
+\end{lstlisting}

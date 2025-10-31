@@ -1,0 +1,67 @@
+\section{Binary Search}
+
+\textbf{Description:} Search in O(log n) time. Works on monotonic functions (sorted arrays, or functions where condition transitions from false to true exactly once).
+
+\subsection{Template for Finding First/Last Position}
+
+\begin{lstlisting}
+# Find FIRST position where check(mid) is True
+def binary_search_first(left, right, check):
+    while left < right:
+        mid = (left + right) // 2
+        
+        if check(mid):
+            right = mid  # Could be answer, search left
+        else:
+            left = mid + 1  # Not answer, search right
+    
+    return left
+
+# Find LAST position where check(mid) is True
+def binary_search_last(left, right, check):
+    while left < right:
+        mid = (left + right + 1) // 2  # Round up!
+        
+        if check(mid):
+            left = mid  # Could be answer, search right
+        else:
+            right = mid - 1  # Not answer, search left
+    
+    return left
+
+# Example: Integer square root
+def sqrt_binary(n):
+    left, right = 0, n
+    
+    while left < right:
+        mid = (left + right + 1) // 2
+        
+        if mid * mid <= n:
+            left = mid  # mid might be answer
+        else:
+            right = mid - 1
+    
+    return left
+
+# Binary search on answer - common pattern
+def min_days_to_make_bouquets(bloomDay, m, k):
+    # Can we make m bouquets in 'days' days?
+    def can_make(days):
+        bouquets = consecutive = 0
+        for bloom in bloomDay:
+            if bloom <= days:
+                consecutive += 1
+                if consecutive == k:
+                    bouquets += 1
+                    consecutive = 0
+            else:
+                consecutive = 0
+        return bouquets >= m
+    
+    if len(bloomDay) < m * k:
+        return -1
+    
+    # Binary search on number of days
+    return binary_search_first(
+        min(bloomDay), max(bloomDay), can_make)
+\end{lstlisting}
