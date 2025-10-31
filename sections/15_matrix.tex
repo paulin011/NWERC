@@ -88,4 +88,13 @@ def linear_recurrence(coeffs, init, n, mod):
         result = (result + result_matrix[0][i] * state[i]) % mod
     
     return result
+
+# Example: Tribonacci T(n) = T(n-1) + T(n-2) + T(n-3)
+def tribonacci(n, mod):
+    if n == 0: return 0
+    if n == 1 or n == 2: return 1
+    
+    coeffs = [1, 1, 1]
+    init = [0, 1, 1]
+    return linear_recurrence(coeffs, init, n, mod)
 \end{lstlisting}

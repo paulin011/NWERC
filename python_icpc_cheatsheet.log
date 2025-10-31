@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.22)  31 OCT 2025 13:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.22)  31 OCT 2025 13:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -419,114 +419,401 @@ Package hyperref Info: Link coloring ON on input line 45.
 
 [1
 
-{/home/paulin/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}])
+{/home/paulin/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}]
+
+[2])
 \tf@toc=\write4
 \openout4 = `python_icpc_cheatsheet.toc'.
 
 
 
-[2] (sections/01_io.tex
+[3] (sections/01_io.tex
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 7.
 )
 
-[3] (sections/02_data_structures.tex
+[4] (sections/02_data_structures.tex
 
-[4]
+[5]
 
-[5])
+[6])
 
-[6] (sections/03_strings.tex)
+[7] (sections/03_strings.tex
 
-[7] (sections/04_math.tex
+[8]
 
-[8])
+[9])
 
-[9] (sections/05_number_theory.tex
+[10] (sections/04_math.tex
 
-[10])
+[11])
 
-[11] (sections/06_graphs.tex
+[12] (sections/05_number_theory.tex
 
-[12])
+[13]
 
-[13] (sections/07_shortest_paths.tex)
+sections/05_number_theory.tex:95: LaTeX Error: Unicode character ≡ (U+2261)
+               not set up for use with LaTeX.
 
-[14] (sections/08_topological_sort.tex
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.95 ...iption:} Solve system of congruences x ≡
+                                                   a₁ (mod m₁), x ≡ a�...
 
-[15])
+You may provide a definition with
+\DeclareUnicodeCharacter 
 
-[16] (sections/09_union_find.tex
 
-[17])
+sections/05_number_theory.tex:95: LaTeX Error: Unicode character ₁ (U+2081)
+               not set up for use with LaTeX.
 
-[18] (sections/10_binary_search.tex
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.95 ...n:} Solve system of congruences x ≡ a₁
+                                                   (mod m₁), x ≡ a₂ (m...
 
-[19])
+You may provide a definition with
+\DeclareUnicodeCharacter 
 
-[20] (sections/11_dynamic_programming.tex
 
-[21]
+sections/05_number_theory.tex:95: LaTeX Error: Unicode character ₁ (U+2081)
+               not set up for use with LaTeX.
 
-[22])
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.95 ...system of congruences x ≡ a₁ (mod m₁
+                                                  ), x ≡ a₂ (mod m₂), ...
 
-[23] (sections/12_arrays.tex
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+sections/05_number_theory.tex:95: LaTeX Error: Unicode character ≡ (U+2261)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.95 ...f congruences x ≡ a₁ (mod m₁), x ≡
+                                                   a₂ (mod m₂), ... Time...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+sections/05_number_theory.tex:95: LaTeX Error: Unicode character ₂ (U+2082)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.95 ...gruences x ≡ a₁ (mod m₁), x ≡ a₂
+                                                   (mod m₂), ... Time: O(n...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+sections/05_number_theory.tex:95: LaTeX Error: Unicode character ₂ (U+2082)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.95 ... ≡ a₁ (mod m₁), x ≡ a₂ (mod m₂
+                                                  ), ... Time: O(n log M) wh...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+sections/05_number_theory.tex:99: LaTeX Error: Invalid UTF-8 byte sequence (�\l
+st@EC�\lst@EC�).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.99     # Solve x ≡ 
+                       remainders[i] (mod moduli[i])
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+
+sections/05_number_theory.tex:122: LaTeX Error: Unicode character φ (U+03C6)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.122 \textbf{Description:} φ
+                              (n) = count of numbers ≤ n coprime to n. Tim...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+sections/05_number_theory.tex:122: LaTeX Error: Unicode character ≤ (U+2264)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.122 ...escription:} φ(n) = count of numbers ≤
+                                                   n coprime to n. Time: O(�...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+sections/05_number_theory.tex:122: LaTeX Error: Unicode character √ (U+221A)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.122 ...f numbers ≤ n coprime to n. Time: O(√
+                                                  n).
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+
+[14])
+
+[15] (sections/06_graphs.tex
+
+[16]
+
+[17]
+
+[18]
+
+[19]
+
+[20])
+
+[21] (sections/07_shortest_paths.tex
+
+[22]
+
+[23]
 
 [24])
 
-[25] (sections/13_advanced_structures.tex
+[25] (sections/08_topological_sort.tex
 
-[26]
+[26])
 
-[27])
+[27] (sections/09_union_find.tex
 
-[28] (sections/14_bit_manipulation.tex
+[28])
 
-[29])
+[29] (sections/10_binary_search.tex
 
-[30] (sections/15_matrix.tex
+[30])
 
-[31])
+[31] (sections/11_dynamic_programming.tex
 
-[32] (sections/16_tips.tex
+[32]
 
 [33]
 
-[34])
+[34]
 
-[35] (python_icpc_cheatsheet.aux)
+[35])
+
+[36] (sections/12_arrays.tex
+
+[37])
+
+[38] (sections/13_advanced_structures.tex
+
+[39]
+
+[40])
+
+[41] (sections/14_bit_manipulation.tex
+
+[42])
+
+[43] (sections/15_matrix.tex
+
+[44])
+
+[45] (sections/16_tips.tex
+
+[46]
+
+[47]
+
+sections/16_tips.tex:177: LaTeX Error: Invalid UTF-8 byte sequence (�\lst@EC�\l
+st@EC�).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.177 # n ≤ 
+              12: O(n!)
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+
+sections/16_tips.tex:178: LaTeX Error: Invalid UTF-8 byte sequence (�\lst@EC�\l
+st@EC�).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.178 # n ≤ 
+              20: O(2^n)
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+
+sections/16_tips.tex:179: LaTeX Error: Invalid UTF-8 byte sequence (�\lst@EC�\l
+st@EC�).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.179 # n ≤ 
+              500: O(n^3)
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+
+sections/16_tips.tex:180: LaTeX Error: Invalid UTF-8 byte sequence (�\lst@EC�\l
+st@EC�).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.180 # n ≤ 
+              5000: O(n^2)
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+
+sections/16_tips.tex:181: LaTeX Error: Invalid UTF-8 byte sequence (�\lst@EC�\l
+st@EC�).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.181 # n ≤ 
+              10^6: O(n log n)
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+
+sections/16_tips.tex:182: LaTeX Error: Invalid UTF-8 byte sequence (�\lst@EC�\l
+st@EC�).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.182 # n ≤ 
+              10^8: O(n)
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+)
+
+[48] (sections/17_geometry.tex
+
+[49]
+
+[50])
+
+[51] (sections/18_flow.tex
+
+[52]
+
+[53]
+
+[54])
+
+[55] (python_icpc_cheatsheet.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-05-26>
  ***********
-Package rerunfilecheck Info: File `python_icpc_cheatsheet.out' has not changed.
 
-(rerunfilecheck)             Checksum: D236DFA9E60104D4E835DB0FD369D38F;7629.
+
+Package rerunfilecheck Warning: File `python_icpc_cheatsheet.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `python_icpc_cheatsheet.out':
+(rerunfilecheck)             Before: 7786FDCC8321CC75904E7213FCB9BFB0;11786
+(rerunfilecheck)             After:  A8B5495FF046B852033C7D466312FE9D;12698.
  ) 
 Here is how much of TeX's memory you used:
- 13958 strings out of 470131
- 211780 string characters out of 5484349
+ 15268 strings out of 470131
+ 231984 string characters out of 5484349
  1435814 words of memory out of 5000000
- 40772 multiletter control sequences out of 15000+600000
- 633207 words of font info for 63 fonts, out of 8000000 for 9000
+ 40960 multiletter control sequences out of 15000+600000
+ 633802 words of font info for 65 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,6n,79p,379b,2001s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </home/paulin/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm109
-5.pk></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx10
-.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12
-.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmitt1
-0.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi1
-0.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10
-.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.
-pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr6.pf
-b></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb>
-</home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-</home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-</home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/latxfont/lcirc
-le1.pfb>
-Output written on python_icpc_cheatsheet.pdf (35 pages, 434315 bytes).
+ 75i,6n,79p,379b,2007s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </home/paulin/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tctt100
+0.pk> </home/paulin/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcit
+1000.pk> </home/paulin/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/t
+crm1095.pk></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/
+cmbx10.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/
+cmbx12.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/
+cmitt10.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm
+/cmmi10.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm
+/cmr10.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/
+cmr12.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/c
+mr6.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr
+8.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy1
+0.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmtt1
+0.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/latxfont
+/lcircle1.pfb>
+Output written on python_icpc_cheatsheet.pdf (55 pages, 653943 bytes).
 PDF statistics:
- 1958 PDF objects out of 2073 (max. 8388607)
- 1319 named destinations out of 1440 (max. 500000)
- 385 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3467 PDF objects out of 3580 (max. 8388607)
+ 2433 named destinations out of 2487 (max. 500000)
+ 577 words of extra memory for PDF output out of 10000 (max. 10000000)
 

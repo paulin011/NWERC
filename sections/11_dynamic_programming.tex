@@ -121,3 +121,146 @@ def edit_dist(s1, s2):
     
     return dp[m][n]
 \end{lstlisting}
+
+\subsection{Longest Common Subsequence (LCS)}
+\textbf{Description:} Longest subsequence common to two sequences. Time: O(m×n).
+
+\begin{lstlisting}
+def lcs(s1, s2):
+    m, n = len(s1), len(s2)
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+    
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if s1[i-1] == s2[j-1]:
+                dp[i][j] = dp[i-1][j-1] + 1
+            else:
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+    
+    return dp[m][n]
+
+# Reconstruct LCS
+def lcs_string(s1, s2):
+    m, n = len(s1), len(s2)
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+    
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if s1[i-1] == s2[j-1]:
+                dp[i][j] = dp[i-1][j-1] + 1
+            else:
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+    
+    # Backtrack
+    result = []
+    i, j = m, n
+    while i > 0 and j > 0:
+        if s1[i-1] == s2[j-1]:
+            result.append(s1[i-1])
+            i -= 1
+            j -= 1
+        elif dp[i-1][j] > dp[i][j-1]:
+            i -= 1
+        else:
+            j -= 1
+    
+    return ''.join(reversed(result))
+\end{lstlisting}
+
+\subsection{Coin Change}
+\textbf{Description:} Minimum coins to make amount, or count ways. Time: O(n×amount).
+
+\begin{lstlisting}
+# Minimum coins
+def coin_change_min(coins, amount):
+    dp = [float('inf')] * (amount + 1)
+    dp[0] = 0
+    
+    for coin in coins:
+        for i in range(coin, amount + 1):
+            dp[i] = min(dp[i], dp[i - coin] + 1)
+    
+    return dp[amount] if dp[amount] != float('inf') else -1
+
+# Count ways
+def coin_change_ways(coins, amount):
+    dp = [0] * (amount + 1)
+    dp[0] = 1
+    
+    for coin in coins:
+        for i in range(coin, amount + 1):
+            dp[i] += dp[i - coin]
+    
+    return dp[amount]
+\end{lstlisting}
+
+\subsection{Palindrome Partitioning}
+\textbf{Description:} Minimum cuts to partition string into palindromes. Time: O(n²).
+
+\begin{lstlisting}
+def min_palindrome_partition(s):
+    n = len(s)
+    
+    # is_pal[i][j] = True if s[i:j+1] is palindrome
+    is_pal = [[False] * n for _ in range(n)]
+    
+    # Every single character is palindrome
+    for i in range(n):
+        is_pal[i][i] = True
+    
+    # Check all substrings
+    for length in range(2, n + 1):
+        for i in range(n - length + 1):
+            j = i + length - 1
+            if s[i] == s[j]:
+                is_pal[i][j] = (length == 2 or 
+                               is_pal[i+1][j-1])
+    
+    # dp[i] = min cuts for s[0:i+1]
+    dp = [float('inf')] * n
+    
+    for i in range(n):
+        if is_pal[0][i]:
+            dp[i] = 0
+        else:
+            for j in range(i):
+                if is_pal[j+1][i]:
+                    dp[i] = min(dp[i], dp[j] + 1)
+    
+    return dp[n-1]
+\end{lstlisting}
+
+\subsection{Subset Sum}
+\textbf{Description:} Check if subset sums to target. Time: O(n×sum).
+
+\begin{lstlisting}
+def subset_sum(arr, target):
+    n = len(arr)
+    dp = [[False] * (target + 1) for _ in range(n + 1)]
+    
+    # Base case: sum 0 is always achievable
+    for i in range(n + 1):
+        dp[i][0] = True
+    
+    for i in range(1, n + 1):
+        for s in range(target + 1):
+            # Don't take arr[i-1]
+            dp[i][s] = dp[i-1][s]
+            
+            # Take arr[i-1] if possible
+            if s >= arr[i-1]:
+                dp[i][s] = dp[i][s] or dp[i-1][s - arr[i-1]]
+    
+    return dp[n][target]
+
+# Space optimized
+def subset_sum_optimized(arr, target):
+    dp = [False] * (target + 1)
+    dp[0] = True
+    
+    for num in arr:
+        for s in range(target, num - 1, -1):
+            dp[s] = dp[s] or dp[s - num]
+    
+    return dp[target]
+\end{lstlisting}

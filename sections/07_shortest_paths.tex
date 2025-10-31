@@ -59,3 +59,130 @@ def reconstruct_path(parent, target):
         target = parent[target]
     return path[::-1]
 \end{lstlisting}
+
+\subsection{Bellman-Ford Algorithm}
+\textbf{Description:} Finds shortest paths with negative edges. Detects negative cycles. Time: O(VE).
+
+\begin{lstlisting}
+def bellman_ford(edges, n, start):
+    # edges = [(u, v, weight), ...]
+    dist = [float('inf')] * n
+    dist[start] = 0
+    
+    # Relax edges n-1 times
+    for _ in range(n - 1):
+        for u, v, w in edges:
+            if dist[u] != float('inf') and \
+               dist[u] + w < dist[v]:
+                dist[v] = dist[u] + w
+    
+    # Check for negative cycles
+    for u, v, w in edges:
+        if dist[u] != float('inf') and \
+           dist[u] + w < dist[v]:
+            return None  # Negative cycle exists
+    
+    return dist
+\end{lstlisting}
+
+\subsection{Floyd-Warshall Algorithm}
+\textbf{Description:} All-pairs shortest paths. Works with negative edges (no negative cycles). Time: O(V³).
+
+\begin{lstlisting}
+def floyd_warshall(n, edges):
+    # Initialize distance matrix
+    dist = [[float('inf')] * n for _ in range(n)]
+    
+    for i in range(n):
+        dist[i][i] = 0
+    
+    for u, v, w in edges:
+        dist[u][v] = min(dist[u][v], w)
+    
+    # Dynamic programming
+    for k in range(n):  # Intermediate vertex
+        for i in range(n):
+            for j in range(n):
+                dist[i][j] = min(dist[i][j], 
+                                dist[i][k] + dist[k][j])
+    
+    return dist
+
+# Check for negative cycle
+def has_negative_cycle(dist, n):
+    for i in range(n):
+        if dist[i][i] < 0:
+            return True
+    return False
+\end{lstlisting}
+
+\subsection{Minimum Spanning Tree}
+
+\subsubsection{Kruskal's Algorithm}
+\textbf{Description:} MST using Union-Find. Sort edges by weight. Time: O(E log E).
+
+\begin{lstlisting}
+def kruskal(n, edges):
+    # edges = [(weight, u, v), ...]
+    edges.sort()  # Sort by weight
+    
+    uf = UnionFind(n)
+    mst_weight = 0
+    mst_edges = []
+    
+    for weight, u, v in edges:
+        if uf.union(u, v):
+            mst_weight += weight
+            mst_edges.append((u, v, weight))
+    
+    return mst_weight, mst_edges
+
+class UnionFind:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.rank = [0] * n
+    
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+    
+    def union(self, x, y):
+        px, py = self.find(x), self.find(y)
+        if px == py:
+            return False
+        if self.rank[px] < self.rank[py]:
+            px, py = py, px
+        self.parent[py] = px
+        if self.rank[px] == self.rank[py]:
+            self.rank[px] += 1
+        return True
+\end{lstlisting}
+
+\subsubsection{Prim's Algorithm}
+\textbf{Description:} MST using heap. Good for dense graphs. Time: O(E log V).
+
+\begin{lstlisting}
+import heapq
+
+def prim(graph, n):
+    # graph[u] = [(v, weight), ...]
+    visited = [False] * n
+    min_heap = [(0, 0)]  # (weight, node)
+    mst_weight = 0
+    
+    while min_heap:
+        weight, u = heapq.heappop(min_heap)
+        
+        if visited[u]:
+            continue
+        
+        visited[u] = True
+        mst_weight += weight
+        
+        for v, w in graph[u]:
+            if not visited[v]:
+                heapq.heappush(min_heap, (w, v))
+    
+    return mst_weight
+\end{lstlisting}

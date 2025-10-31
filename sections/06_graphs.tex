@@ -113,4 +113,250 @@ def has_cycle(graph, n):
                 return True
     
     return False
+
+# Cycle detection in directed graph
+def has_cycle_directed(graph, n):
+    WHITE, GRAY, BLACK = 0, 1, 2
+    color = [WHITE] * n
+    
+    def dfs(node):
+        color[node] = GRAY
+        
+        for neighbor in graph[node]:
+            if color[neighbor] == GRAY:
+                return True  # Back edge = cycle
+            if color[neighbor] == WHITE:
+                if dfs(neighbor):
+                    return True
+        
+        color[node] = BLACK
+        return False
+    
+    for i in range(n):
+        if color[i] == WHITE:
+            if dfs(i):
+                return True
+    return False
+
+# Connected components count
+def count_components(graph, n):
+    visited = [False] * n
+    count = 0
+    
+    def dfs(node):
+        visited[node] = True
+        for neighbor in graph[node]:
+            if not visited[neighbor]:
+                dfs(neighbor)
+    
+    for i in range(n):
+        if not visited[i]:
+            dfs(i)
+            count += 1
+    
+    return count
+
+# Bipartite check (2-coloring)
+def is_bipartite(graph, n):
+    color = [-1] * n
+    
+    def bfs(start):
+        from collections import deque
+        queue = deque([start])
+        color[start] = 0
+        
+        while queue:
+            node = queue.popleft()
+            
+            for neighbor in graph[node]:
+                if color[neighbor] == -1:
+                    color[neighbor] = 1 - color[node]
+                    queue.append(neighbor)
+                elif color[neighbor] == color[node]:
+                    return False
+        
+        return True
+    
+    for i in range(n):
+        if color[i] == -1:
+            if not bfs(i):
+                return False
+    
+    return True
+\end{lstlisting}
+
+\subsection{Strongly Connected Components (SCC)}
+\textbf{Description:} Find all SCCs in directed graph using Tarjan's algorithm. Time: O(V+E).
+
+\begin{lstlisting}
+def tarjan_scc(graph, n):
+    index_counter = [0]
+    stack = []
+    lowlink = [0] * n
+    index = [0] * n
+    on_stack = [False] * n
+    index_initialized = [False] * n
+    sccs = []
+    
+    def strongconnect(v):
+        index[v] = index_counter[0]
+        lowlink[v] = index_counter[0]
+        index_counter[0] += 1
+        index_initialized[v] = True
+        stack.append(v)
+        on_stack[v] = True
+        
+        for w in graph[v]:
+            if not index_initialized[w]:
+                strongconnect(w)
+                lowlink[v] = min(lowlink[v], lowlink[w])
+            elif on_stack[w]:
+                lowlink[v] = min(lowlink[v], index[w])
+        
+        if lowlink[v] == index[v]:
+            scc = []
+            while True:
+                w = stack.pop()
+                on_stack[w] = False
+                scc.append(w)
+                if w == v:
+                    break
+            sccs.append(scc)
+    
+    for v in range(n):
+        if not index_initialized[v]:
+            strongconnect(v)
+    
+    return sccs
+\end{lstlisting}
+
+\subsection{Bridges and Articulation Points}
+\textbf{Description:} Find critical edges (bridges) and vertices (articulation points). Time: O(V+E).
+
+\begin{lstlisting}
+def find_bridges(graph, n):
+    visited = [False] * n
+    disc = [0] * n
+    low = [0] * n
+    parent = [-1] * n
+    time = [0]
+    bridges = []
+    
+    def dfs(u):
+        visited[u] = True
+        disc[u] = low[u] = time[0]
+        time[0] += 1
+        
+        for v in graph[u]:
+            if not visited[v]:
+                parent[v] = u
+                dfs(v)
+                low[u] = min(low[u], low[v])
+                
+                # Bridge condition
+                if low[v] > disc[u]:
+                    bridges.append((u, v))
+            elif v != parent[u]:
+                low[u] = min(low[u], disc[v])
+    
+    for i in range(n):
+        if not visited[i]:
+            dfs(i)
+    
+    return bridges
+
+def find_articulation_points(graph, n):
+    visited = [False] * n
+    disc = [0] * n
+    low = [0] * n
+    parent = [-1] * n
+    time = [0]
+    ap = set()
+    
+    def dfs(u):
+        children = 0
+        visited[u] = True
+        disc[u] = low[u] = time[0]
+        time[0] += 1
+        
+        for v in graph[u]:
+            if not visited[v]:
+                children += 1
+                parent[v] = u
+                dfs(v)
+                low[u] = min(low[u], low[v])
+                
+                # Articulation point conditions
+                if parent[u] == -1 and children > 1:
+                    ap.add(u)
+                if parent[u] != -1 and low[v] >= disc[u]:
+                    ap.add(u)
+            elif v != parent[u]:
+                low[u] = min(low[u], disc[v])
+    
+    for i in range(n):
+        if not visited[i]:
+            dfs(i)
+    
+    return list(ap)
+\end{lstlisting}
+
+\subsection{Lowest Common Ancestor (LCA)}
+\textbf{Description:} Find LCA of two nodes in a tree. Binary lifting preprocessing: O(n log n), Query: O(log n).
+
+\begin{lstlisting}
+class LCA:
+    def __init__(self, graph, root, n):
+        self.n = n
+        self.LOG = 20  # log2(n) + 1
+        self.parent = [[-1] * self.LOG for _ in range(n)]
+        self.depth = [0] * n
+        
+        # DFS to set parent and depth
+        visited = [False] * n
+        
+        def dfs(node, par, d):
+            visited[node] = True
+            self.parent[node][0] = par
+            self.depth[node] = d
+            
+            for neighbor in graph[node]:
+                if not visited[neighbor]:
+                    dfs(neighbor, node, d + 1)
+        
+        dfs(root, -1, 0)
+        
+        # Binary lifting preprocessing
+        for j in range(1, self.LOG):
+            for i in range(n):
+                if self.parent[i][j-1] != -1:
+                    self.parent[i][j] = self.parent[
+                        self.parent[i][j-1]][j-1]
+    
+    def lca(self, u, v):
+        # Make u deeper
+        if self.depth[u] < self.depth[v]:
+            u, v = v, u
+        
+        # Bring u to same level as v
+        diff = self.depth[u] - self.depth[v]
+        for i in range(self.LOG):
+            if (diff >> i) & 1:
+                u = self.parent[u][i]
+        
+        if u == v:
+            return u
+        
+        # Binary search for LCA
+        for i in range(self.LOG - 1, -1, -1):
+            if self.parent[u][i] != self.parent[v][i]:
+                u = self.parent[u][i]
+                v = self.parent[v][i]
+        
+        return self.parent[u][0]
+    
+    def dist(self, u, v):
+        # Distance between two nodes
+        l = self.lca(u, v)
+        return self.depth[u] + self.depth[v] - 2 * self.depth[l]
 \end{lstlisting}

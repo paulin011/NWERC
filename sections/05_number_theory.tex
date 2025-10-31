@@ -67,4 +67,105 @@ def factorize(n):
 from collections import Counter
 def prime_factor_counts(n):
     return Counter(factorize(n))
+
+# Count divisors
+def count_divisors(n):
+    count = 0
+    i = 1
+    while i * i <= n:
+        if n % i == 0:
+            count += 1 if i * i == n else 2
+        i += 1
+    return count
+
+# Sum of divisors
+def sum_divisors(n):
+    total = 0
+    i = 1
+    while i * i <= n:
+        if n % i == 0:
+            total += i
+            if i != n // i:
+                total += n // i
+        i += 1
+    return total
+\end{lstlisting}
+
+\subsection{Chinese Remainder Theorem}
+\textbf{Description:} Solve system of congruences x ≡ a₁ (mod m₁), x ≡ a₂ (mod m₂), ... Time: O(n log M) where M is product of moduli.
+
+\begin{lstlisting}
+def chinese_remainder(remainders, moduli):
+    # Solve x ≡ remainders[i] (mod moduli[i])
+    # Assumes moduli are pairwise coprime
+    
+    def extgcd(a, b):
+        if b == 0:
+            return a, 1, 0
+        g, x1, y1 = extgcd(b, a % b)
+        return g, y1, x1 - (a // b) * y1
+    
+    total = 0
+    prod = 1
+    for m in moduli:
+        prod *= m
+    
+    for r, m in zip(remainders, moduli):
+        p = prod // m
+        _, inv, _ = extgcd(p, m)
+        total += r * inv * p
+    
+    return total % prod
+\end{lstlisting}
+
+\subsection{Euler's Totient Function}
+\textbf{Description:} φ(n) = count of numbers ≤ n coprime to n. Time: O(√n).
+
+\begin{lstlisting}
+def euler_phi(n):
+    result = n
+    p = 2
+    
+    while p * p <= n:
+        if n % p == 0:
+            # Remove factor p
+            while n % p == 0:
+                n //= p
+            # Multiply by (1 - 1/p)
+            result -= result // p
+        p += 1
+    
+    if n > 1:
+        result -= result // n
+    
+    return result
+
+# Phi for range [1, n] using sieve
+def phi_sieve(n):
+    phi = list(range(n + 1))  # phi[i] = i initially
+    
+    for i in range(2, n + 1):
+        if phi[i] == i:  # i is prime
+            for j in range(i, n + 1, i):
+                phi[j] -= phi[j] // i
+    
+    return phi
+\end{lstlisting}
+
+\subsection{Fast Exponentiation with Matrix}
+\textbf{Description:} Already covered in matrix section, but useful pattern.
+
+\begin{lstlisting}
+# Modular exponentiation
+def mod_exp(base, exp, mod):
+    result = 1
+    base %= mod
+    
+    while exp > 0:
+        if exp & 1:
+            result = (result * base) % mod
+        base = (base * base) % mod
+        exp >>= 1
+    
+    return result
 \end{lstlisting}

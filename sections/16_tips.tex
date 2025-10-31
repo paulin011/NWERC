@@ -9,9 +9,18 @@ input = sys.stdin.readline
 # Increase recursion limit for deep DFS/DP
 sys.setrecursionlimit(10**6)
 
+# Threading for higher stack limit (CAUTION: use carefully)
+import threading
+threading.stack_size(2**26)  # 64MB
+sys.setrecursionlimit(2**20)
+
 # Deep copy (be careful with performance)
 from copy import deepcopy
 new_list = deepcopy(old_list)
+
+# Fast output (for printing large results)
+import sys
+print = sys.stdout.write  # Only use for string output
 \end{lstlisting}
 
 \subsection{Useful Libraries}
@@ -132,4 +141,44 @@ def func(arr=None):
         arr = []
     arr.append(1)
     return arr
+
+# Generator expressions save memory
+sum(x*x for x in range(10**6))  # Memory efficient
+# vs
+sum([x*x for x in range(10**6)])  # Creates full list
+
+# Ternary operator
+x = a if condition else b
+
+# Dictionary get with default
+count = d.get(key, 0) + 1
+
+# Matrix rotation 90 degrees clockwise
+def rotate_90(matrix):
+    return [list(row) for row in zip(*matrix[::-1])]
+
+# Matrix transpose
+def transpose(matrix):
+    return [list(row) for row in zip(*matrix)]
+\end{lstlisting}
+
+\subsection{Time Complexity Reference}
+\begin{lstlisting}
+# Common time complexities for n = 10^6:
+# O(1), O(log n): instant
+# O(n): ~1 second
+# O(n log n): ~1-2 seconds
+# O(n sqrt(n)): ~30 seconds (risky)
+# O(n^2): TLE for n > 10^4
+# O(2^n): TLE for n > 20
+# O(n!): TLE for n > 11
+
+# Input size guidelines:
+# n ≤ 12: O(n!)
+# n ≤ 20: O(2^n)
+# n ≤ 500: O(n^3)
+# n ≤ 5000: O(n^2)
+# n ≤ 10^6: O(n log n)
+# n ≤ 10^8: O(n)
+# n > 10^8: O(log n) or O(1)
 \end{lstlisting}
