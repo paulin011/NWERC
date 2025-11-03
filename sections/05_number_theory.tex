@@ -92,11 +92,11 @@ def sum_divisors(n):
 \end{lstlisting}
 
 \subsection{Chinese Remainder Theorem}
-\textbf{Description:} Solve system of congruences x ≡ a₁ (mod m₁), x ≡ a₂ (mod m₂), ... Time: O(n log M) where M is product of moduli.
+\textbf{Description:} Solve system of congruences $x \equiv a_1 \pmod{m_1}$, $x \equiv a_2 \pmod{m_2}$, ... Time: O(n log M) where M is product of moduli.
 
 \begin{lstlisting}
 def chinese_remainder(remainders, moduli):
-    # Solve x ≡ remainders[i] (mod moduli[i])
+    # Solve x = remainders[i] (mod moduli[i])
     # Assumes moduli are pairwise coprime
     
     def extgcd(a, b):
@@ -119,7 +119,7 @@ def chinese_remainder(remainders, moduli):
 \end{lstlisting}
 
 \subsection{Euler's Totient Function}
-\textbf{Description:} φ(n) = count of numbers ≤ n coprime to n. Time: O(√n).
+\textbf{Description:} $\phi(n)$ = count of numbers $\leq n$ coprime to n. Time: O($\sqrt{n}$).
 
 \begin{lstlisting}
 def euler_phi(n):
@@ -147,7 +147,7 @@ def phi_sieve(n):
     for i in range(2, n + 1):
         if phi[i] == i:  # i is prime
             for j in range(i, n + 1, i):
-                phi[j] -= phi[j] // i
+                phi[j] = phi[j] // i * (i - 1)
     
     return phi
 \end{lstlisting}
