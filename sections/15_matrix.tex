@@ -66,6 +66,9 @@ def fibonacci(n, mod):
 def linear_recurrence(coeffs, init, n, mod):
     k = len(coeffs)
     
+    if n < k:
+        return init[n]
+    
     # Transition matrix
     # [a(n), a(n-1), ..., a(n-k+1)]
     M = [[0] * k for _ in range(k)]
@@ -73,11 +76,8 @@ def linear_recurrence(coeffs, init, n, mod):
     for i in range(1, k):
         M[i][i-1] = 1  # Identity for shifting
     
-    # Initial state vector
-    state = init[::-1]  # Reverse order
-    
-    if n < k:
-        return init[n]
+    # Initial state vector [a(k-1), a(k-2), ..., a(0)]
+    state = init[k-1::-1]
     
     # M^(n-k+1)
     result_matrix = matpow(M, n - k + 1, mod)

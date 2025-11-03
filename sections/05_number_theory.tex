@@ -112,7 +112,9 @@ def chinese_remainder(remainders, moduli):
     
     for r, m in zip(remainders, moduli):
         p = prod // m
-        _, inv, _ = extgcd(p, m)
+        g, inv, _ = extgcd(p, m)
+        # inv may be negative, normalize it
+        inv = (inv % m + m) % m
         total += r * inv * p
     
     return total % prod
