@@ -1,23 +1,27 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[9pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[margin=2cm]{geometry}
+\usepackage[margin=0.75cm]{geometry}
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{amsmath}
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{extsizes}
 
 % Compact spacing
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{4pt}
-\titlespacing*{\section}{0pt}{8pt}{4pt}
-\titlespacing*{\subsection}{0pt}{6pt}{3pt}
+\setlength{\parskip}{1.5pt}
+\setlength{\columnsep}{12pt}
+\titlespacing*{\section}{0pt}{5pt}{2pt}
+\titlespacing*{\subsection}{0pt}{3pt}{1.5pt}
+\setlist{nosep, leftmargin=*}
 
 % Code listing style
 \lstset{
     language=Python,
-    basicstyle=\ttfamily\small,
+    basicstyle=\ttfamily\footnotesize,
     keywordstyle=\color{blue}\bfseries,
     commentstyle=\color{gray}\itshape,
     stringstyle=\color{red},
@@ -25,11 +29,15 @@
     numberstyle=\tiny\color{gray},
     breaklines=true,
     showstringspaces=false,
-    tabsize=4,
+    tabsize=2,
     frame=single,
     frameround=tttt,
     columns=flexible,
-    keepspaces=true
+    keepspaces=true,
+    aboveskip=3pt,
+    belowskip=3pt,
+    xleftmargin=6pt,
+    xrightmargin=3pt
 }
 
 % Hyperref setup
@@ -45,66 +53,54 @@
 \begin{document}
 
 \begin{center}
-    {\LARGE\bfseries Python ICPC Cheatsheet}\\[0.5em]
-    {\large Comprehensive Reference for Competitive Programming}\\[0.5em]
-    \today
+    {\Large\bfseries Python ICPC Cheatsheet}\\[0.2em]
+    {\small Comprehensive Reference for Competitive Programming}
 \end{center}
 
+\begin{multicols}{2}
 \tableofcontents
-\newpage
+\end{multicols}
+
+\begin{multicols}{2}
+\raggedcolumns
 
 % Include all sections
 \input{sections/01_io}
-\newpage
 
 \input{sections/02_data_structures}
-\newpage
 
 \input{sections/03_strings}
-\newpage
 
 \input{sections/04_math}
-\newpage
 
 \input{sections/05_number_theory}
-\newpage
 
 \input{sections/06_graphs}
-\newpage
 
 \input{sections/07_shortest_paths}
-\newpage
 
 \input{sections/08_topological_sort}
-\newpage
 
 \input{sections/09_union_find}
-\newpage
 
 \input{sections/10_binary_search}
-\newpage
 
 \input{sections/11_dynamic_programming}
-\newpage
 
 \input{sections/12_arrays}
-\newpage
 
 \input{sections/13_advanced_structures}
-\newpage
 
 \input{sections/14_bit_manipulation}
-\newpage
 
 \input{sections/15_matrix}
-\newpage
 
 \input{sections/16_tips}
-\newpage
 
 \input{sections/17_geometry}
-\newpage
 
 \input{sections/18_flow}
+
+\end{multicols}
 
 \end{document}

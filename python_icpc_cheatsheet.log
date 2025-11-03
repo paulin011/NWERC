@@ -1,16 +1,15 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.22)  3 NOV 2025 09:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.22)  3 NOV 2025 10:22
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/paulin/Documents/python cheatsheet/python_icpc_cheatsheet.tex"
-(/home/paulin/Documents/python cheatsheet/python_icpc_cheatsheet.tex
+**./python_icpc_cheatsheet.tex
+(python_icpc_cheatsheet.tex
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-05-26>
 (/home/paulin/.miktex/texmfs/install/tex/latex/base/article.cls
 Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
-(/home/paulin/.miktex/texmfs/install/tex/latex/base/size11.clo
-File: size11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+(/home/paulin/.miktex/texmfs/install/tex/latex/base/size10.clo
+File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count275
 \c@section=\count276
@@ -329,36 +328,117 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 85.
 )
 \Hy@SectionHShift=\skip57
-) (/home/paulin/.miktex/texmfs/install/tex/latex/listings/lstlang1.sty
+) (/home/paulin/.miktex/texmfs/install/tex/latex/tools/multicol.sty
+Package: multicol 2025/05/25 v2.0a multicolumn formatting (FMi)
+\c@tracingmulticols=\count320
+\mult@box=\box59
+\multicol@leftmargin=\dimen180
+\c@unbalance=\count321
+\c@collectmore=\count322
+\doublecol@number=\count323
+\multicoltolerance=\count324
+\multicolpretolerance=\count325
+\full@width=\dimen181
+\page@free=\dimen182
+\premulticols=\dimen183
+\postmulticols=\dimen184
+\multicolsep=\skip58
+\multicolbaselineskip=\skip59
+\partial@page=\box60
+\last@line=\box61
+\mc@boxedresult=\box62
+\maxbalancingoverflow=\dimen185
+\mult@rightbox=\box63
+\mult@grightbox=\box64
+\mult@firstbox=\box65
+\mult@gfirstbox=\box66
+\@tempa=\box67
+\@tempa=\box68
+\@tempa=\box69
+\@tempa=\box70
+\@tempa=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
+\@tempa=\box80
+\@tempa=\box81
+\@tempa=\box82
+\@tempa=\box83
+\@tempa=\box84
+\@tempa=\box85
+\@tempa=\box86
+\@tempa=\box87
+\@tempa=\box88
+\@tempa=\box89
+\@tempa=\box90
+\@tempa=\box91
+\@tempa=\box92
+\@tempa=\box93
+\@tempa=\box94
+\@tempa=\box95
+\@tempa=\box96
+\@tempa=\box97
+\@tempa=\box98
+\@tempa=\box99
+\@tempa=\box100
+\@tempa=\box101
+\@tempa=\box102
+\c@minrows=\count326
+\c@columnbadness=\count327
+\c@finalcolumnbadness=\count328
+\last@try=\dimen186
+\multicolovershoot=\dimen187
+\multicolundershoot=\dimen188
+\mult@nat@firstbox=\box103
+\colbreak@box=\box104
+\mc@col@check@num=\count329
+\g__mc_curr_col_int=\count330
+)
+(/home/paulin/.miktex/texmfs/install/tex/latex/extsizes/extsizes.sty
+Package: extsizes 1996/10/08 v1.0 Non Standard LaTeX Package
+
+
+Package ExtSizes Warning: It is better to use one of the extsizes classes,
+ if you can.
+
+(/home/paulin/.miktex/texmfs/install/tex/latex/extsizes/size9.clo
+File: size9.clo 1999/11/11 v1.4a NON-Standard LaTeX file (size option)
+))
+(/home/paulin/.miktex/texmfs/install/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 43.
+Package hyperref Info: Option `colorlinks' set `true' on input line 51.
 
 (/home/paulin/.miktex/texmfs/install/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-04-14 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count320
+\l__color_backend_stack_int=\count331
 )
 (python_icpc_cheatsheet.aux)
 \openout1 = `python_icpc_cheatsheet.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -368,23 +448,23 @@ LaTeX Font Info:    ... okay on input line 45.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(56.9055pt, 483.69687pt, 56.9055pt)
-* v-part:(T,H,B)=(56.9055pt, 731.23584pt, 56.9055pt)
+* h-part:(L,W,R)=(21.33955pt, 554.82877pt, 21.33955pt)
+* v-part:(T,H,B)=(21.33955pt, 802.36774pt, 21.33955pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=483.69687pt
-* \textheight=731.23584pt
-* \oddsidemargin=-15.36449pt
-* \evensidemargin=-15.36449pt
-* \topmargin=-52.36449pt
+* \textwidth=330.0pt
+* \textheight=600.29984pt
+* \oddsidemargin=61.0pt
+* \evensidemargin=61.0pt
+* \topmargin=16.0pt
 * \headheight=12.0pt
 * \headsep=25.0pt
-* \topskip=11.0pt
+* \topskip=9.0pt
 * \footskip=30.0pt
-* \marginparwidth=50.0pt
+* \marginparwidth=65.0pt
 * \marginparsep=10.0pt
-* \columnsep=10.0pt
-* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \columnsep=12.0pt
+* \skip\footins=8.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -394,147 +474,313 @@ LaTeX Font Info:    ... okay on input line 45.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count321
+\c@lstlisting=\count332
 (/home/paulin/.miktex/texmfs/install/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count322
-\scratchdimen=\dimen180
-\scratchbox=\box59
-\nofMPsegments=\count323
-\nofMParguments=\count324
+\scratchcounter=\count333
+\scratchdimen=\dimen189
+\scratchbox=\box105
+\nofMPsegments=\count334
+\nofMParguments=\count335
 \everyMPshowfont=\toks29
-\MPscratchCnt=\count325
-\MPscratchDim=\dimen181
-\MPnumerator=\count326
-\makeMPintoPDFobject=\count327
+\MPscratchCnt=\count336
+\MPscratchDim=\dimen190
+\MPnumerator=\count337
+\makeMPintoPDFobject=\count338
 \everyMPtoPDFconversion=\toks30
 )
-Package hyperref Info: Link coloring ON on input line 45.
+Package hyperref Info: Link coloring ON on input line 53.
  (python_icpc_cheatsheet.out) (python_icpc_cheatsheet.out)
 \@outlinefile=\write3
 \openout3 = `python_icpc_cheatsheet.out'.
 
 
 (python_icpc_cheatsheet.toc
+Underfull \hbox (badness 10000) in paragraph at lines 4--4
+ [][] [][][]\OT1/cmr/m/n/9 Deque (Double-ended 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+ [][] [][][]\OT1/cmr/m/n/9 Fast Ex-po-nen-ti-a-tion 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--24
+ [][] [][][]\OT1/cmr/m/n/9 BFS (Breadth-First 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--26
+ [][] [][][]\OT1/cmr/m/n/9 Strongly Con-nected 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--34
+ [][] [][][]\OT1/cmr/m/n/9 Kruskal's Al-go- 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--38
+ [][] [][][]\OT1/cmr/m/n/9 DFS-based Topo-log-i-cal 
+ []
+
+
+Underfull \hbox (badness 7030) in paragraph at lines 39--39
+ [] [][][]\OT1/cmr/bx/n/9 Union-Find (Dis-joint Set 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--41
+ [][] [][][]\OT1/cmr/m/n/9 Template for Find-ing 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 63--63
+ [][] [][][]\OT1/cmr/m/n/9 Python-Specific Op-ti- 
+ []
+
+
+
+
+
+
 
 [1
 
 {/home/paulin/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 74--74
+ [][] [][][]\OT1/cmr/m/n/9 Maximum Flow - 
+ []
 
-[2])
+
+Underfull \hbox (badness 10000) in paragraph at lines 74--74
+ \OT1/cmr/m/n/9 Edmonds-Karp (BFS- 
+ []
+
+)
 \tf@toc=\write4
 \openout4 = `python_icpc_cheatsheet.toc'.
 
 
 
-[3] (sections/01_io.tex
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
+
+
+
+
+(sections/01_io.tex
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <7> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 7.
-)
+) (sections/02_data_structures.tex
+Underfull \hbox (badness 10000) in paragraph at lines 35--35
+|[]\OT1/cmr/bx/n/10 Deque (Double-ended
+ []
 
-[4] (sections/02_data_structures.tex
 
-[5]
 
-[6])
 
-[7] (sections/03_strings.tex
 
-[8]
 
-[9])
 
-[10] (sections/04_math.tex
+[2]) (sections/03_strings.tex
 
-[11])
 
-[12] (sections/05_number_theory.tex
+
+
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 125--125
+|[]\OT1/cmr/bx/n/10 Rabin-Karp (Rolling
+ []
+
+) (sections/04_math.tex
+
+
+
+
+
+[4]) (sections/05_number_theory.tex
+
+
+
+
+
+[5]) (sections/06_graphs.tex
+
+
+
+
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 20--20
+|[]\OT1/cmr/bx/n/10 BFS (Breadth-First
+ []
+
+
+
+
+
+
+
+[7]
+Underfull \hbox (badness 5787) in paragraph at lines 234--235
+\OT1/cmr/bx/n/9 Description: \OT1/cmr/m/n/9 Find crit-i-cal edges
+ []
+
+
+Underfull \hbox (badness 5908) in paragraph at lines 234--235
+\OT1/cmr/m/n/9 (bridges) and ver-tices (ar-tic-u-la-tion
+ []
+
+
+
+
+
+
+
+[8]) (sections/07_shortest_paths.tex
+
+
+
+
+
+[9]
+
+
+
+
+
+[10]) (sections/08_topological_sort.tex
+Underfull \hbox (badness 10000) in paragraph at lines 39--39
+|[]\OT1/cmr/bx/n/10 DFS-based Topo-log-i-cal
+ []
+
+) (sections/09_union_find.tex
+
+
+
+
+
+[11]) (sections/10_binary_search.tex
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
+|[]\OT1/cmr/bx/n/10 Template for Find-ing
+ []
+
+) (sections/11_dynamic_programming.tex
+
+
+
+
+
+[12]
+Underfull \hbox (badness 6477) in paragraph at lines 3--4
+\OT1/cmr/bx/n/9 Description: \OT1/cmr/m/n/9 Solve prob-lems by
+ []
+
+
+Underfull \hbox (badness 7944) in paragraph at lines 95--95
+|[]\OT1/cmr/bx/n/10 Edit Dis-tance (Lev-en-
+ []
+
+
+
+
+
+
 
 [13]
+Underfull \hbox (badness 5359) in paragraph at lines 171--172
+\OT1/cmr/m/n/9 amount, or count ways. Time:
+ []
 
-[14])
 
-[15] (sections/06_graphs.tex
 
-[16]
 
-[17]
 
-[18]
 
-[19]
 
-[20])
+[14]) (sections/12_arrays.tex
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
+\OT1/cmr/bx/n/9 Description: \OT1/cmr/m/n/9 Ef-fi-ciently per-form
+ []
 
-[21] (sections/07_shortest_paths.tex
 
-[22]
 
-[23]
 
-[24])
 
-[25] (sections/08_topological_sort.tex
 
-[26])
 
-[27] (sections/09_union_find.tex
+[15]) (sections/13_advanced_structures.tex
 
-[28])
 
-[29] (sections/10_binary_search.tex
 
-[30])
 
-[31] (sections/11_dynamic_programming.tex
 
-[32]
+[16]) (sections/14_bit_manipulation.tex
 
-[33]
 
-[34]
 
-[35])
 
-[36] (sections/12_arrays.tex
 
-[37])
+[17]) (sections/15_matrix.tex
 
-[38] (sections/13_advanced_structures.tex
 
-[39]
 
-[40])
 
-[41] (sections/14_bit_manipulation.tex
 
-[42])
+[18]) (sections/16_tips.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+|[]\OT1/cmr/bx/n/10 Python-Specific Op-ti-
+ []
 
-[43] (sections/15_matrix.tex
 
-[44])
 
-[45] (sections/16_tips.tex
 
-[46]
 
-[47])
 
-[48] (sections/17_geometry.tex
 
-[49]
+[19]) (sections/17_geometry.tex
 
-[50])
 
-[51] (sections/18_flow.tex
 
-[52]
 
-[53]
 
-[54])
+[20]) (sections/18_flow.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+|[]\OT1/cmr/bx/n/10 Maximum Flow -
+ []
 
-[55] (python_icpc_cheatsheet.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\OT1/cmr/bx/n/10 Edmonds-Karp (BFS-
+ []
+
+
+
+
+
+
+
+[21]
+Underfull \hbox (badness 10000) in paragraph at lines 78--78
+|[]\OT1/cmr/bx/n/10 Dinic's Al-go-rithm
+ []
+
+
+
+
+
+
+
+[22])
+
+
+
+
+
+
+
+[23] (python_icpc_cheatsheet.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-05-26>
@@ -544,31 +790,32 @@ Package rerunfilecheck Info: File `python_icpc_cheatsheet.out' has not changed.
 (rerunfilecheck)             Checksum: A8B5495FF046B852033C7D466312FE9D;12698.
  ) 
 Here is how much of TeX's memory you used:
- 15264 strings out of 470131
- 231978 string characters out of 5484349
- 1435814 words of memory out of 5000000
- 40956 multiletter control sequences out of 15000+600000
- 633802 words of font info for 65 fonts, out of 8000000 for 9000
+ 15426 strings out of 470131
+ 237010 string characters out of 5484349
+ 1915566 words of memory out of 5000000
+ 41139 multiletter control sequences out of 15000+600000
+ 632285 words of font info for 60 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,6n,79p,457b,2007s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </home/paulin/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tctt100
-0.pk> </home/paulin/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcit
-1000.pk> </home/paulin/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/t
-crm1095.pk></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/
+ 75i,6n,79p,416b,2767s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </home/paulin/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi525/tctt080
+0.pk> </home/paulin/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi525/tcit
+0800.pk> </home/paulin/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/t
+crm0900.pk></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/
 cmbx10.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/
-cmbx12.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/
-cmitt10.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm
-/cmmi10.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm
-/cmr10.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/
-cmr12.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/c
-mr6.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr
-8.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmtt1
-0.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/latxfont
-/lcircle1.pfb>
-Output written on python_icpc_cheatsheet.pdf (55 pages, 660872 bytes).
+cmbx9.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/c
+mitt10.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/
+cmmi9.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/c
+mr5.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr
+6.pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.
+pfb></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr9.pf
+b></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy9.pfb
+></home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
+</home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmtt9.pfb><
+/home/paulin/.miktex/texmfs/install/fonts/type1/public/amsfonts/latxfont/lcircl
+e1.pfb>
+Output written on python_icpc_cheatsheet.pdf (23 pages, 653091 bytes).
 PDF statistics:
- 3487 PDF objects out of 3580 (max. 8388607)
- 2433 named destinations out of 2487 (max. 500000)
+ 3370 PDF objects out of 3580 (max. 8388607)
+ 2401 named destinations out of 2487 (max. 500000)
  617 words of extra memory for PDF output out of 10000 (max. 10000000)
 
