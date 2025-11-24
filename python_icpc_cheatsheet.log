@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.17)  24 NOV 2025 10:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.17)  24 NOV 2025 10:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -572,37 +572,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--3
  []
 
 [20]
-
-Package enumitem Warning: Negative labelwidth. This does not make much
-(enumitem)                sense, on input line 189.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--192
-\OT1/cmr/m/n/9 pre-fix sums, count-ing fre-quen-cies
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 192--193
-[]\OT1/cmr/m/n/9 sorting (Tim-sort via
+[]$\OML/cmm/m/it/9 O\OT1/cmr/m/n/9 (1)$: ar-ray ac-cess, dic-tio-nary
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 193--194
-[]\OT1/cmr/m/n/9 sqrt-decomposition queries,
+Underfull \hbox (badness 10000) in paragraph at lines 194--195
+[]$\OML/cmm/m/it/9 O\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 n\OT1/cmr/m/n/9 )$: single-pass scans, two-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 193--194
+Underfull \hbox (badness 10000) in paragraph at lines 196--197
 \OT1/cmr/m/n/9 some Mo's al-go-rithm vari-ants
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 197--198
-[]\OT1/cmr/m/n/9 full per-mu-ta-tions, ex-haus-tive
+Underfull \hbox (badness 10000) in paragraph at lines 198--199
+[]$\OML/cmm/m/it/9 O\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 n[]\OT1/cmr/m/n/9 )$: triple loops (Floyd--
  []
 
 [21]
-Overfull \hbox (149.89243pt too wide) in paragraph at lines 205--218
+Overfull \hbox (149.89243pt too wide) in paragraph at lines 208--221
  [][] 
  []
 
@@ -638,18 +628,18 @@ Package rerunfilecheck Info: File `python_icpc_cheatsheet.out' has not changed.
 (rerunfilecheck)             Checksum: FFD162DA9647BA10ED210B6941AC6F0B;12928.
  ) 
 Here is how much of TeX's memory you used:
- 15582 strings out of 475118
- 236564 string characters out of 5764901
+ 15561 strings out of 475118
+ 236194 string characters out of 5764901
  1990293 words of memory out of 5000000
- 35879 multiletter control sequences out of 15000+600000
+ 35876 multiletter control sequences out of 15000+600000
  564609 words of font info for 57 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,10n,79p,622b,2782s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,10n,79p,622b,2768s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfit0800.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb>
-Output written on python_icpc_cheatsheet.pdf (25 pages, 378882 bytes).
+Output written on python_icpc_cheatsheet.pdf (25 pages, 378791 bytes).
 PDF statistics:
- 3578 PDF objects out of 3580 (max. 8388607)
- 3484 compressed objects within 35 object streams
- 2533 named destinations out of 2984 (max. 500000)
+ 3556 PDF objects out of 3580 (max. 8388607)
+ 3462 compressed objects within 35 object streams
+ 2515 named destinations out of 2984 (max. 500000)
  625 words of extra memory for PDF output out of 10000 (max. 10000000)
 

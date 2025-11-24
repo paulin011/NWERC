@@ -163,39 +163,42 @@ def transpose(matrix):
 \end{lstlisting}
 
 \subsection{Time Complexity Reference}
-\begin{lstlisting}
-# Common time complexities (Python, rough guides for 1--2s limits):
-# O(1), O(log n): instant
-# O(n): usually fine up to ~10^7 operations (~1s)
-# O(n log n): OK for n up to several 10^5 depending on constants
-# O(n sqrt(n)): risky in Python (may be OK for n up to a few 10^4 with low constants)
-# O(n^2): often TLE for n > 10^4
-# O(2^n): TLE for n > 20 (unless heavy pruning/memoization)
-# O(n!): TLE for n > 11
 
-# Input size guidelines (Python-focused):
-# n <= 12: O(n!) (brute-force permutations)
-# n <= 20: O(2^n) (subset DP / bitmask DP with n up to ~20)
-# n <= 500: O(n^3) may sometimes pass for small constants
-# n <= 5000: O(n^2) borderline; optimize heavily
-# n <= 10^6: O(n log n) common; O(n) preferred when possible
-# n <= 10^7: O(n) may be ok for tight loops
-# n > 10^7: aim for O(n) with very low constants, or O(log n)/O(1)
-\end{lstlisting}
+Common time complexities (Python, rough guides for 1--2s limits):
+\begin{itemize}
+  \item \textbf{$O(1),\;O(\log n)$}: instant
+  \item \textbf{$O(n)$}: usually fine up to $\sim 10^{7}$ operations ($\sim$1s)
+  \item \textbf{$O(n\log n)$}: OK for $n$ up to several $10^{5}$ depending on constants
+  \item \textbf{$O(n\sqrt{n})$}: risky in Python (may be OK for $n$ up to a few $10^{4}$ with low constants)
+  \item \textbf{$O(n^2)$}: often TLE for $n>10^{4}$
+  \item \textbf{$O(2^n)$}: TLE for $n>20$ (unless heavy pruning/memoization)
+  \item \textbf{$O(n!)$}: TLE for $n>11$
+\end{itemize}
+
+Input size guidelines (Python-focused):
+\begin{itemize}
+  \item \textbf{$n\le 12$}: $O(n!)$ (brute-force permutations)
+  \item \textbf{$n\le 20$}: $O(2^n)$ (subset DP / bitmask DP)
+  \item \textbf{$n\le 500$}: $O(n^3)$ may sometimes pass for small constants
+  \item \textbf{$n\le 5000$}: $O(n^2)$ borderline; optimize heavily
+  \item \textbf{$n\le 10^6$}: $O(n\log n)$ common; $O(n)$ preferred when possible
+  \item \textbf{$n\le 10^7$}: $O(n)$ may be OK for tight loops
+  \item \textbf{$n>10^7$}: aim for $O(n)$ with very low constants, or $O(\log n)/O(1)$
+\end{itemize}
 
 \textbf{Complexity examples (Python implementations)}
 
-\begin{description}
-  \item[$O(1)$] array access, dictionary lookup, push/pop from list end.
-  \item[$O(\log n)$] binary search (bisect), heap push/pop (heapq), operations in sortedcontainers.
-  \item[$O(n)$] single-pass scans, two-pointers, prefix sums, counting frequencies (Counter).
-  \item[$O(n\log n)$] sorting (Timsort via sorted()/list.sort()), heap construction, divide-and-conquer merges.
-  \item[$O(n\sqrt{n})$] sqrt-decomposition queries, some Mo's algorithm variants (constant-sensitive).
-  \item[$O(n^2)$] nested loops for pairwise checks, naive DP on pairs (be cautious for $n>10{,}000$).
-  \item[$O(n^3)$] triple loops (Floyd--Warshall), usually too slow unless $n\le 200$.
-  \item[$O(2^n)$] bitmask DP, subset enumerations, recursion over subsets (recommended for $n\le 20$).
-  \item[$O(n!)$] full permutations, exhaustive search over orderings (recommended for $n\le 10$; occasionally up to 11).
-\end{description}
+\begin{itemize}
+  \item \textbf{$O(1)$}: array access, dictionary lookup, push/pop from list end.
+  \item \textbf{$O(\log n)$}: binary search (bisect), heap push/pop (heapq), operations in sortedcontainers.
+  \item \textbf{$O(n)$}: single-pass scans, two-pointers, prefix sums, counting frequencies (Counter).
+  \item \textbf{$O(n\log n)$}: sorting (Timsort via sorted()/list.sort()), heap construction, divide-and-conquer merges.
+  \item \textbf{$O(n\sqrt{n})$}: sqrt-decomposition queries, some Mo's algorithm variants (constant-sensitive).
+  \item \textbf{$O(n^2)$}: nested loops for pairwise checks, naive DP on pairs (be cautious for $n>10{,}000$).
+  \item \textbf{$O(n^3)$}: triple loops (Floyd--Warshall), usually too slow unless $n\le 200$.
+  \item \textbf{$O(2^n)$}: bitmask DP, subset enumerations, recursion over subsets (recommended for $n\le 20$).
+  \item \textbf{$O(n!)$}: full permutations, exhaustive search over orderings (recommended for $n\le 10$; occasionally up to 11).
+\end{itemize}
 
 \textbf{How to use:} This quick reference maps input size $n$ (left) to typical feasible time complexities (right) for contest time limits (1--2s) targeting Python implementations. Use it to pick algorithmic approaches and to decide when to optimize or change strategy.
 
