@@ -161,3 +161,135 @@ class Trie:
         dfs(node, "")
         return words
 \end{lstlisting}
+
+\subsection{Treap (Randomized Balanced BST)}
+\textbf{Description:} Ordered set/map with expected O(log n) insert, erase, search, k-th, and rank. Combines a BST by key and a heap by random priority. Stores unique keys; for multiset, store (key, uid) or maintain a count.
+
+\begin{lstlisting}
+import random
+
+class TreapNode:
+    __slots__ = ("key", "prio", "left", "right", "size")
+    def __init__(self, key):
+        self.key = key
+        self.prio = random.randint(1, 1 << 30)
+        self.left = None
+        self.right = None
+        self.size = 1
+
+def _sz(t):
+    return t.size if t else 0
+
+def _upd(t):
+    if t:
+        t.size = 1 + _sz(t.left) + _sz(t.right)
+
+def _merge(a, b):
+    # assumes all keys in a < all keys in b
+    if not a or not b:
+        return a or b
+    if a.prio > b.prio:
+        a.right = _merge(a.right, b)
+        _upd(a)
+        return a
+    else:
+        b.left = _merge(a, b.left)
+        _upd(b)
+        return b
+
+def _split(t, key):
+    # returns (l, r): l has keys < key, r has keys >= key
+    if not t:
+        return (None, None)
+    if key <= t.key:
+        l, t.left = _split(t.left, key)
+        _upd(t)
+        return (l, t)
+    else:
+        t.right, r = _split(t.right, key)
+        _upd(t)
+        return (t, r)
+
+def _erase(t, key):
+    if not t:
+        return None
+    if key == t.key:
+        return _merge(t.left, t.right)
+    if key < t.key:
+        t.left = _erase(t.left, key)
+    else:
+        t.right = _erase(t.right, key)
+    _upd(t)
+    return t
+
+class Treap:
+    def __init__(self):
+        self.root = None
+
+    def __len__(self):
+        return _sz(self.root)
+
+    def contains(self, key):
+        t = self.root
+        while t:
+            if key == t.key:
+                return True
+            t = t.left if key < t.key else t.right
+        return False
+
+    def insert(self, key):
+        if self.contains(key):
+            return
+        node = TreapNode(key)
+        l, r = _split(self.root, key)
+        self.root = _merge(_merge(l, node), r)
+
+    def remove(self, key):
+        self.root = _erase(self.root, key)
+
+    def kth_smallest(self, k):
+        # 0-indexed k
+        t = self.root
+        while t:
+            ls = _sz(t.left)
+            if k < ls:
+                t = t.left
+            elif k == ls:
+                return t.key
+            else:
+                k -= ls + 1
+                t = t.right
+        return None  # k out of range
+
+    def count_less_than(self, key):
+        # number of keys < key
+        t, cnt = self.root, 0
+        while t:
+            if key <= t.key:
+                t = t.left
+            else:
+                cnt += 1 + _sz(t.left)
+                t = t.right
+        return cnt
+
+    def lower_bound(self, key):
+        # smallest key >= key; returns None if none
+        t, ans = self.root, None
+        while t:
+            if t.key >= key:
+                ans = t.key
+                t = t.left
+            else:
+                t = t.right
+        return ans
+
+# Usage example
+T = Treap()
+for x in [5, 1, 7, 3]:
+    T.insert(x)
+T.contains(3)           # True
+T.kth_smallest(1)       # 3  (0-indexed)
+T.count_less_than(6)    # 3  (1,3,5)
+T.remove(5)
+len(T)                  # 3
+\end{lstlisting}

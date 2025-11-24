@@ -164,21 +164,65 @@ def transpose(matrix):
 
 \subsection{Time Complexity Reference}
 \begin{lstlisting}
-# Common time complexities for n = 10^6:
+# Common time complexities (Python, rough guides for 1--2s limits):
 # O(1), O(log n): instant
-# O(n): ~1 second
-# O(n log n): ~1-2 seconds
-# O(n sqrt(n)): ~30 seconds (risky)
-# O(n^2): TLE for n > 10^4
-# O(2^n): TLE for n > 20
+# O(n): usually fine up to ~10^7 operations (~1s)
+# O(n log n): OK for n up to several 10^5 depending on constants
+# O(n sqrt(n)): risky in Python (may be OK for n up to a few 10^4 with low constants)
+# O(n^2): often TLE for n > 10^4
+# O(2^n): TLE for n > 20 (unless heavy pruning/memoization)
 # O(n!): TLE for n > 11
 
-# Input size guidelines:
-# n <= 12: O(n!)
-# n <= 20: O(2^n)
-# n <= 500: O(n^3)
-# n <= 5000: O(n^2)
-# n <= 10^6: O(n log n)
-# n <= 10^8: O(n)
-# n > 10^8: O(log n) or O(1)
+# Input size guidelines (Python-focused):
+# n <= 12: O(n!) (brute-force permutations)
+# n <= 20: O(2^n) (subset DP / bitmask DP with n up to ~20)
+# n <= 500: O(n^3) may sometimes pass for small constants
+# n <= 5000: O(n^2) borderline; optimize heavily
+# n <= 10^6: O(n log n) common; O(n) preferred when possible
+# n <= 10^7: O(n) may be ok for tight loops
+# n > 10^7: aim for O(n) with very low constants, or O(log n)/O(1)
 \end{lstlisting}
+
+\textbf{Complexity examples (Python implementations)}
+
+\begin{description}
+  \item[$O(1)$] array access, dictionary lookup, push/pop from list end.
+  \item[$O(\log n)$] binary search (bisect), heap push/pop (heapq), operations in sortedcontainers.
+  \item[$O(n)$] single-pass scans, two-pointers, prefix sums, counting frequencies (Counter).
+  \item[$O(n\log n)$] sorting (Timsort via sorted()/list.sort()), heap construction, divide-and-conquer merges.
+  \item[$O(n\sqrt{n})$] sqrt-decomposition queries, some Mo's algorithm variants (constant-sensitive).
+  \item[$O(n^2)$] nested loops for pairwise checks, naive DP on pairs (be cautious for $n>10{,}000$).
+  \item[$O(n^3)$] triple loops (Floyd--Warshall), usually too slow unless $n\le 200$.
+  \item[$O(2^n)$] bitmask DP, subset enumerations, recursion over subsets (recommended for $n\le 20$).
+  \item[$O(n!)$] full permutations, exhaustive search over orderings (recommended for $n\le 10$; occasionally up to 11).
+\end{description}
+
+\textbf{How to use:} This quick reference maps input size $n$ (left) to typical feasible time complexities (right) for contest time limits (1--2s) targeting Python implementations. Use it to pick algorithmic approaches and to decide when to optimize or change strategy.
+
+\begin{table}[h]
+\centering
+\scriptsize
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Input size $n$} & \textbf{Typical feasible complexities (examples in Python)} \\ \hline
+$n \le 10$    & $O(n!)$, $O(n\cdot 2^n)$ (full permutations, brute-force orderings) \\ \hline
+$n \le 20$    & $O(2^n)$, $O(n\cdot 2^n)$ (bitmask DP, subset enumeration) \\ \hline
+$n \le 100$   & $O(n^4)$ (very small), $O(n^3)$ (cubic) for tiny inputs or optimized inner loops \\ \hline
+$n \le 500$   & $O(n^3)$ borderline, $O(n^2\log n)$ sometimes OK with low constants \\ \hline
+$n \le 2000$  & $O(n^2)$ (tight but common), $O(n\log n)$ safe \\ \hline
+$n \le 10^4$  & $O(n^2)$ (possibly optimized), $O(n\log n)$ recommended \\ \hline
+$n \le 10^5$  & $O(n\log n)$, $O(n)$ (linear or near-linear algorithms) \\ \hline
+$n \le 10^6$  & $O(n)$ or $O(n\log n)$ (careful with constants; prefer linear) \\ \hline
+$n > 10^6$     & $O(n)$ (very tight), $O(\log n)$ or $O(1)$ preferred \\ \hline
+\end{tabular}
+\end{table}
+
+\textbf{Notes on filling the table:}
+\begin{itemize}
+  \item Start by checking the problem's time limit and target language. These guidelines are Python-focused (assume roughly $\approx 10^{7}$ simple operations/s; actual throughput depends on implementation details and input shapes).
+  \item Convert algorithm cost to operation count: roughly cost = $c\cdot f(n)$. If cost $>$ time\_limit $\times$ ops\_per\_sec, it will TLE.
+  \item When in doubt, aim one complexity class lower (e.g. prefer $O(n\log n)$ over $O(n^2)$ for $n$ around $10^5$).
+  \item Consider memory limits---some faster algorithms use more memory (e.g. segment trees vs. Fenwick tree).
+  \item For multivariate inputs, replace $n$ with the product/dominant parameter (e.g. $n\cdot m$) and apply the same rules.
+  \item If an algorithm theoretically fits but is close to the limit, try to reduce constant factors: use local variables, avoid heavy Python objects in inner loops, use built-in functions, or move hot code to PyPy/Cython if allowed.
+\end{itemize}
