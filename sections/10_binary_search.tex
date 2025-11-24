@@ -247,3 +247,17 @@ def minimum_speed_to_eat_bananas(piles, h):
 \item Binary search on answer: define a monotonic check function
 \item Handle edge cases: empty arrays, single elements, all same elements
 \end{itemize}
+
+\subsection{Common Pitfalls}
+
+\textbf{Watch out for:}
+\begin{itemize}
+\item \textbf{Infinite loops:} Wrong midpoint calculation for "find last" (missing +1)
+\item \textbf{Off-by-one errors:} Mixing \texttt{len(arr)} vs \texttt{len(arr)-1} in initial bounds
+\item \textbf{Integer overflow:} Use \texttt{left + (right - left) // 2} instead of \texttt{(left + right) // 2}
+\item \textbf{Wrong condition:} \texttt{<} vs \texttt{<=} in loop condition (\texttt{left < right} vs \texttt{left <= right})
+\item \textbf{Non-monotonic function:} Binary search only works if condition changes at most once
+\item \textbf{Empty result handling:} Check bounds before accessing \texttt{arr[result]}
+\item \textbf{Floating point precision:} Use appropriate epsilon for convergence
+\item \textbf{Wrong search space:} Ensure your \texttt{left} and \texttt{right} bounds contain the answer
+\end{itemize}

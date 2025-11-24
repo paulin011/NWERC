@@ -1,0 +1,60 @@
+% Section: Best procedure for each problem
+\section{Problem procedure and contest workflow}
+
+This section summarizes a concise, repeatable procedure to approach each contest problem efficiently.
+
+\begin{enumerate}
+  \item \textbf{Quick read (1--2 minutes)}: Read statement carefully. Identify input/output formats and required output exactly.
+  \item \textbf{Classify and estimate (1--3 minutes)}: Determine problem type (graphs, math, DP, greedy, flow, geometry, data structures). Estimate difficulty and a rough solution approach and complexity.
+  \item \textbf{Decide whether to attempt now}
+    \begin{itemize}
+      \item Solve immediately if it looks easy or you already know the pattern.
+      \item Skip and mark for later if it looks hard or needs long derivation.
+    \end{itemize}
+  \item \textbf{Concrete examples and edge cases (2--5 minutes)}: Create small examples, corner cases, and verify understanding (empty inputs, single element, max/min values).
+  \item \textbf{Design outline (5--15 minutes)}: Write a clear plan, data structures, and algorithm steps. Record complexity and memory. If proof/argument needed, sketch correctness and invariants.
+  \item \textbf{Implement carefully}
+    \begin{itemize}
+      \item Start from a short, tested template (fast I/O, common helpers).
+      \item Implement core logic in readable chunks and name variables clearly.
+      \item Avoid clever one-liners that are hard to debug under time pressure.
+    \end{itemize}
+  \item \textbf{Test locally (2--8 minutes)}: Run sample tests, your handcrafted examples, and stress small random cases if possible. Check edge cases (overflows, boundary indices, integer division, floating precision, modulo behavior).
+  \item \textbf{Optimize only if necessary}
+    \begin{itemize}
+      \item If complexity is borderline, identify hotspots and optimize (use faster data structures, avoid repeated work, precompute).
+      \item Prefer simple, robust fixes (change algorithmic approach if needed).
+    \end{itemize}
+  \item \textbf{Verify and submit}
+    \begin{itemize}
+      \item Re-check input parsing and exact output formatting.
+      \item Comment out debug prints and run final tests.
+      \item Submit when confident; if WA, read feedback and debug quickly (reproduce failing case locally if possible).
+    \end{itemize}
+  \item \textbf{Time management and team strategy}
+    \begin{itemize}
+      \item Track time per problem; don’t spend excessive time on a single problem early.
+      \item Coordinate with teammates (divide/parallelize work, let one implement while another tests or reads other problems).
+      \item Keep a visible board of which problems are attempted, solved, or to revisit.
+    \end{itemize}
+\end{enumerate}
+
+\subsection*{Quick checklist before submitting}
+\begin{itemize}
+  \item Correct handling of limits and types (int vs float, long long, big integers).
+  \item Off-by-one and index orientation.
+  \item Exact output formatting (extra spaces/newlines).
+  \item Performance within time/memory limits.
+  \item No remaining debug prints.
+\end{itemize}
+
+\subsection*{Common patterns and hints}
+\begin{itemize}
+  \item Try greedy first for constructive problems; if it fails, look for DP/graph framing.
+  \item Reduce to shortest paths / flow for routing and matching problems.
+  \item For counting/number theory, consider modular arithmetic and combinatorics shortcuts.
+  \item Use Union-Find for connectivity under merges; use binary search on answer when monotone.
+  \item When stuck, simplify constraints or solve a special case to gain insight.
+\end{itemize}
+
+% End of section
