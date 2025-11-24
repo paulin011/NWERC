@@ -289,7 +289,24 @@ arr = list(map(int, input().split()))
 s = ' '.join(map(str, arr))
 \end{lstlisting}
 
-\textbf{Key Benefits:}
+\subsubsection*{ASCII conversions (quick reference)}
+\begin{center}
+\small
+\begin{tabular}{@{}ll|ll@{}}
+\textbf{Char} & \textbf{Code} & \textbf{Char} & \textbf{Code} \\
+\hline
+'A' & 65 & 'a' & 97 \\
+'Z' & 90 & 'z' & 122 \\
+'0' & 48 & '9' & 57 \\
+' ' (space) & 32 & '\textbackslash n' & 10 \\
+'!' & 33 & '?' & 63 \\
+\end{tabular}
+\end{center}
+
+\medskip
+Use \texttt{ord(char)} to get the numeric code and \texttt{chr(code)} to convert back.
+
+\textbf{Key Benefits}:
 \begin{itemize}
 \item \textbf{Readability:} More concise and expressive code
 \item \textbf{Performance:} Built-in functions are often faster than manual loops
