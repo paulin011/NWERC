@@ -1,67 +1,249 @@
 \section{Binary Search}
 
-\textbf{Description:} Search in O(log n) time. Works on monotonic functions (sorted arrays, or functions where condition transitions from false to true exactly once).
+\textbf{Description:} Search in O(log n) time. Works on monotonic functions where condition changes from false to true (or vice versa) exactly once.
 
-\subsection{Template for Finding First/Last Position}
+\subsection{Basic Templates}
 
 \begin{lstlisting}
-# Find FIRST position where check(mid) is True
-def binary_search_first(left, right, check):
+# Standard binary search (find exact element)
+def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    
+    return -1  # Not found
+
+# Find FIRST position where condition is True
+def lower_bound(arr, target):
+    left, right = 0, len(arr)
+    
     while left < right:
         mid = (left + right) // 2
         
-        if check(mid):
+        if arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid
+    
+    return left
+
+# Find LAST position where condition is True + 1
+def upper_bound(arr, target):
+    left, right = 0, len(arr)
+    
+    while left < right:
+        mid = (left + right) // 2
+        
+        if arr[mid] <= target:
+            left = mid + 1
+        else:
+            right = mid
+    
+    return left
+\end{lstlisting}
+
+\subsection{Advanced Templates}
+
+\begin{lstlisting}
+# Find first True in boolean array
+def find_first_true(check_func, left, right):
+    while left < right:
+        mid = (left + right) // 2
+        
+        if check_func(mid):
             right = mid  # Could be answer, search left
         else:
             left = mid + 1  # Not answer, search right
     
     return left
 
-# Find LAST position where check(mid) is True
-def binary_search_last(left, right, check):
+# Find last True in boolean array
+def find_last_true(check_func, left, right):
     while left < right:
         mid = (left + right + 1) // 2  # Round up!
         
-        if check(mid):
+        if check_func(mid):
             left = mid  # Could be answer, search right
         else:
             right = mid - 1  # Not answer, search left
     
     return left
 
-# Example: Integer square root
-def sqrt_binary(n):
-    left, right = 0, n
+# Binary search on floating point
+def binary_search_float(check_func, left, right, eps=1e-9):
+    while right - left > eps:
+        mid = (left + right) / 2
+        
+        if check_func(mid):
+            right = mid
+        else:
+            left = mid
+    
+    return left
+\end{lstlisting}
+
+\subsection{Common Use Cases}
+
+\begin{lstlisting}
+# 1. Find insertion point
+def search_insert_position(nums, target):
+    return lower_bound(nums, target)
+
+# 2. Find range of target in sorted array
+def search_range(nums, target):
+    left = lower_bound(nums, target)
+    if left >= len(nums) or nums[left] != target:
+        return [-1, -1]
+    right = upper_bound(nums, target) - 1
+    return [left, right]
+
+# 3. Peak element (not strictly increasing/decreasing)
+def find_peak_element(nums):
+    left, right = 0, len(nums) - 1
     
     while left < right:
-        mid = (left + right + 1) // 2
+        mid = (left + right) // 2
         
-        if mid * mid <= n:
-            left = mid  # mid might be answer
+        if nums[mid] > nums[mid + 1]:
+            right = mid  # Peak is on left or mid
         else:
-            right = mid - 1
+            left = mid + 1  # Peak is on right
     
     return left
 
-# Binary search on answer - common pattern
-def min_days_to_make_bouquets(bloomDay, m, k):
-    # Can we make m bouquets in 'days' days?
-    def can_make(days):
-        bouquets = consecutive = 0
-        for bloom in bloomDay:
-            if bloom <= days:
-                consecutive += 1
-                if consecutive == k:
-                    bouquets += 1
-                    consecutive = 0
+# 4. Rotated sorted array
+def search_rotated(nums, target):
+    left, right = 0, len(nums) - 1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        
+        if nums[mid] == target:
+            return mid
+        
+        # Left half is sorted
+        if nums[left] <= nums[mid]:
+            if nums[left] <= target < nums[mid]:
+                right = mid - 1
             else:
-                consecutive = 0
-        return bouquets >= m
+                left = mid + 1
+        # Right half is sorted
+        else:
+            if nums[mid] < target <= nums[right]:
+                left = mid + 1
+            else:
+                right = mid - 1
     
-    if len(bloomDay) < m * k:
-        return -1
+    return -1
+
+# 5. Square root (integer)
+def sqrt_int(x):
+    if x < 2:
+        return x
     
-    # Binary search on number of days
-    return binary_search_first(
-        min(bloomDay), max(bloomDay), can_make)
+    left, right = 1, x // 2
+    
+    while left <= right:
+        mid = (left + right) // 2
+        square = mid * mid
+        
+        if square == x:
+            return mid
+        elif square < x:
+            left = mid + 1
+        else:
+            right = mid - 1
+    
+    return right  # Largest integer whose square <= x
 \end{lstlisting}
+
+\subsection{Binary Search on Answer}
+
+\begin{lstlisting}
+# Template for optimization problems
+def minimize_max_distance(stations, k):
+    # Can we place k stations with max distance <= max_dist?
+    def possible(max_dist):
+        stations_needed = 0
+        for i in range(len(stations) - 1):
+            gap = stations[i + 1] - stations[i]
+            stations_needed += int(gap / max_dist)
+        return stations_needed <= k
+    
+    left, right = 0.0, stations[-1] - stations[0]
+    
+    while right - left > 1e-6:
+        mid = (left + right) / 2
+        
+        if possible(mid):
+            right = mid
+        else:
+            left = mid
+    
+    return left
+
+# Capacity allocation problem
+def split_array_largest_sum(nums, m):
+    # Can we split into m subarrays with max sum <= max_sum?
+    def can_split(max_sum):
+        count = 1
+        current_sum = 0
+        
+        for num in nums:
+            if current_sum + num > max_sum:
+                count += 1
+                current_sum = num
+                if count > m:
+                    return False
+            else:
+                current_sum += num
+        
+        return True
+    
+    left, right = max(nums), sum(nums)
+    
+    while left < right:
+        mid = (left + right) // 2
+        
+        if can_split(mid):
+            right = mid
+        else:
+            left = mid + 1
+    
+    return left
+
+# Resource allocation with greedy check
+def minimum_speed_to_eat_bananas(piles, h):
+    # Can we eat all bananas in h hours at speed k?
+    def can_finish(k):
+        return sum((pile + k - 1) // k for pile in piles) <= h
+    
+    left, right = 1, max(piles)
+    
+    while left < right:
+        mid = (left + right) // 2
+        
+        if can_finish(mid):
+            right = mid
+        else:
+            left = mid + 1
+    
+    return left
+\end{lstlisting}
+
+\textbf{Key Points:}
+\begin{itemize}
+\item Always clarify what you're searching for (first/last occurrence, exact match, etc.)
+\item For "find first True": use \texttt{right = mid}
+\item For "find last True": use \texttt{left = mid} and \texttt{mid = (left + right + 1) // 2}
+\item Binary search on answer: define a monotonic check function
+\item Handle edge cases: empty arrays, single elements, all same elements
+\end{itemize}
