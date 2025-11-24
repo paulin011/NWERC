@@ -136,4 +136,96 @@ a ^ b   # symmetric difference
 # Ordered set workaround
 from collections import OrderedDict
 oset = OrderedDict.fromkeys([])
+
+\subsection{Skip List}
+\textbf{Description:} Skip lists are probabilistic balanced data structures that support O(log n) expected time for search, insert, and delete. They are an alternative to balanced BSTs and are simple to implement. Good when you want ordered set/map operations with expected logarithmic time.
+
+\textbf{How it works:} A skip list is composed of multiple levels of sorted linked lists; level~0 contains all elements and higher levels act as ``express lanes'' with a subset of elements (each element appears in a random number of levels, forming a ``tower''). To search, start at the head on the highest level, move right while the next key is less than the target, and drop down one level when you can no longer move right; repeat until level~0. New node levels are chosen randomly with probability $p$ (common choice $p=0.5$). For contests, use $p=0.5$ and $L_{\max} \approx \lceil \log_{2} N \rceil + 2$ for safety.
+
+\begin{lstlisting}
+import random
+
+class SkipNode:
+    def __init__(self, key, value=None, level=0):
+        self.key = key
+        self.value = value
+        # forward pointers for levels 0..level
+        self.forward = [None] * (level + 1)
+
+class SkipList:
+    def __init__(self, max_level=16, p=0.5):
+        self.max_level = max_level
+        self.p = p
+        self.level = 0
+        self.head = SkipNode(None, level=max_level)
+
+    def random_level(self):
+        lvl = 0
+        while random.random() < self.p and lvl < self.max_level:
+            lvl += 1
+        return lvl
+
+    def search(self, key):
+        node = self.head
+        # start from highest level
+        for i in range(self.level, -1, -1):
+            while node.forward[i] and node.forward[i].key < key:
+                node = node.forward[i]
+        node = node.forward[0]
+        if node and node.key == key:
+            return node.value
+        return None
+
+    def insert(self, key, value=None):
+        update = [None] * (self.max_level + 1)
+        node = self.head
+        for i in range(self.level, -1, -1):
+            while node.forward[i] and node.forward[i].key < key:
+                node = node.forward[i]
+            update[i] = node
+        node = node.forward[0]
+
+        # If key exists, update value
+        if node and node.key == key:
+            node.value = value
+            return
+
+        lvl = self.random_level()
+        if lvl > self.level:
+            for i in range(self.level + 1, lvl + 1):
+                update[i] = self.head
+            self.level = lvl
+
+        new_node = SkipNode(key, value, lvl)
+        for i in range(lvl + 1):
+            new_node.forward[i] = update[i].forward[i]
+            update[i].forward[i] = new_node
+
+    def delete(self, key):
+        update = [None] * (self.max_level + 1)
+        node = self.head
+        for i in range(self.level, -1, -1):
+            while node.forward[i] and node.forward[i].key < key:
+                node = node.forward[i]
+            update[i] = node
+        node = node.forward[0]
+
+        if not node or node.key != key:
+            return False  # not found
+
+        for i in range(self.level + 1):
+            if update[i].forward[i] != node:
+                break
+            update[i].forward[i] = node.forward[i]
+
+        # adjust current level
+        while self.level > 0 and self.head.forward[self.level] is None:
+            self.level -= 1
+        return True
+
+# Example usage:
+# s = SkipList()
+# s.insert(10, 'ten')
+# print(s.search(10))
+# s.delete(10)
 \end{lstlisting}

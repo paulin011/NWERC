@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.17)  24 NOV 2025 10:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.17)  24 NOV 2025 10:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -438,12 +438,7 @@ Package hyperref Info: Link coloring ON on input line 62.
 \@outlinefile=\write3
 \openout3 = `python_icpc_cheatsheet.out'.
 
-
-PAGEWIDTH=597.50787pt
-TEXTWIDTH=580.43607pt
-COLUMNSEP=4.0pt
-LEFTMARGIN=-63.73409pt
-(./python_icpc_cheatsheet.toc)
+ (./python_icpc_cheatsheet.toc)
 \tf@toc=\write4
 \openout4 = `python_icpc_cheatsheet.toc'.
 
@@ -452,7 +447,7 @@ LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <8> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 7.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]) (./sections/02_data_structures.tex) (./sections/03_strings.tex [2]) (./sections/04_math.tex [3{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]) (./sections/05_number_theory.tex [4]) (./sections/06_graphs.tex [5] [6]) (./sections/07_shortest_paths.tex [7]) (./sections/08_topological_sort.tex [8]) (./sections/09_union_find.tex) (./sections/10_binary_search.tex) (./sections/11_dynamic_programming.tex [9] [10]) (./sections/12_arrays.tex [11]) (./sections/13_advanced_structures.tex [12]) (./sections/14_bit_manipulation.tex [13]) (./sections/15_matrix.tex [14]) (./sections/16_tips.tex [15]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]) (./sections/02_data_structures.tex [2]) (./sections/03_strings.tex [3{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]) (./sections/04_math.tex [4]) (./sections/05_number_theory.tex [5]) (./sections/06_graphs.tex [6] [7]) (./sections/07_shortest_paths.tex [8]) (./sections/08_topological_sort.tex) (./sections/09_union_find.tex [9]) (./sections/10_binary_search.tex) (./sections/11_dynamic_programming.tex [10] [11]) (./sections/12_arrays.tex) (./sections/13_advanced_structures.tex [12] [13]) (./sections/14_bit_manipulation.tex [14]) (./sections/15_matrix.tex) (./sections/16_tips.tex [15]
 Overfull \hbox (43.87152pt too wide) in paragraph at lines 208--221
  [][] 
  []
@@ -463,9 +458,9 @@ Package multicol Warning: Floats and marginpars not allowed inside `multicols' e
 
 Package multicol Warning: Floats and marginpars not allowed inside `multicols' environment!.
 
-) (./sections/17_geometry.tex [16]) (./sections/18_flow.tex [17])
+[16]) (./sections/17_geometry.tex [17]) (./sections/18_flow.tex [18])
 
-[18] (./python_icpc_cheatsheet.aux)
+[19] (./python_icpc_cheatsheet.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -474,18 +469,18 @@ Package rerunfilecheck Info: File `python_icpc_cheatsheet.out' has not changed.
 (rerunfilecheck)             Checksum: FFD162DA9647BA10ED210B6941AC6F0B;12928.
  ) 
 Here is how much of TeX's memory you used:
- 15494 strings out of 475118
- 233466 string characters out of 5764901
- 2447008 words of memory out of 5000000
- 35828 multiletter control sequences out of 15000+600000
+ 15681 strings out of 475118
+ 235849 string characters out of 5764901
+ 2343008 words of memory out of 5000000
+ 35922 multiletter control sequences out of 15000+600000
  563151 words of font info for 52 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,10n,79p,622b,2773s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,10n,79p,772b,2775s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfit0800.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb>
-Output written on python_icpc_cheatsheet.pdf (18 pages, 364386 bytes).
+Output written on python_icpc_cheatsheet.pdf (19 pages, 370984 bytes).
 PDF statistics:
- 3504 PDF objects out of 3580 (max. 8388607)
- 3417 compressed objects within 35 object streams
- 2508 named destinations out of 2984 (max. 500000)
+ 3623 PDF objects out of 4296 (max. 8388607)
+ 3534 compressed objects within 36 object streams
+ 2601 named destinations out of 2984 (max. 500000)
  625 words of extra memory for PDF output out of 10000 (max. 10000000)
 
