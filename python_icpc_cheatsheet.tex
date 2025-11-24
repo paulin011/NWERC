@@ -8,7 +8,7 @@
 \usepackage{titlesec}
 \usepackage{hyperref}
 \usepackage{multicol}
-\usepackage{extsizes}
+% Note: removed `extsizes` and `showframe` (they previously overrode geometry and were used for diagnostics)
 
 % Compact spacing
 \setlength{\parindent}{0pt}
@@ -60,6 +60,11 @@
 }
 
 \begin{document}
+% Diagnostics: print layout dimensions to the log for analysis
+% \typeout{PAGEWIDTH=\the\paperwidth}
+% \typeout{TEXTWIDTH=\the\textwidth}
+% \typeout{COLUMNSEP=\the\columnsep}
+% \typeout{LEFTMARGIN=\the\oddsidemargin}
 
 \begin{center}
     {\Large\bfseries Python ICPC Cheatsheet}\\[0.2em]
