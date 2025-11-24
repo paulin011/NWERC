@@ -1,6 +1,6 @@
 \documentclass[9pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[left=0.3cm,right=0.3cm,top=0.6cm,bottom=0.6cm]{geometry}
+\usepackage[left=0.3cm,right=0.3cm,top=0.6cm,bottom=0.6cm,includehead]{geometry}
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{amsmath}
@@ -8,6 +8,8 @@
 \usepackage{titlesec}
 \usepackage{hyperref}
 \usepackage{multicol}
+\usepackage{fancyhdr} % For header
+
 % Note: removed `extsizes` and `showframe` (they previously overrode geometry and were used for diagnostics)
 
 % Compact spacing
@@ -58,6 +60,15 @@
     pdftitle={Python ICPC Cheatsheet},
     pdfauthor={ICPC Contestant},
 }
+
+% Header settings
+\setlength{\headheight}{14pt}
+\setlength{\headsep}{4pt}
+\pagestyle{fancy}
+\fancyhf{}% clear header/footer
+\fancyhead[L]{\small Universität zu Köln}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0pt} % no rule for tighter look
 
 \begin{document}
 % Diagnostics: print layout dimensions to the log for analysis
