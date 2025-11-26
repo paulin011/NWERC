@@ -232,10 +232,10 @@ matrix = [list(map(int, input().split())) for _ in range(n)]
 import sys
 lines = sys.stdin.read().strip().split('\n')
 
-# Fast I/O for large inputs
-import sys
-input = sys.stdin.readline
-print = sys.stdout.write  # Only for string output
+# Fast I/O: see the dedicated Input/Output section for recommended setup using
+# `input = sys.stdin.readline` and other fast I/O patterns (Section 01_io).
+# Avoid redefining `input`/`print` repeatedly across sections; set them once
+# in your submission template when needed.
 
 # Multiple test cases pattern
 t = int(input())

@@ -72,3 +72,143 @@ def modcomb(n, r, fact, inv_fact, mod):
     if r > n or r < 0: return 0
     return fact[n] * inv_fact[r] % mod * inv_fact[n-r] % mod
 \end{lstlisting}
+
+\subsection{Number Theory (Advanced)}
+\textbf{Description:} Utilities for modular arithmetic, prime generation, Diophantine equations and CRT commonly needed in ICPC. Each helper includes when to use it, complexity and important edge-cases to remember.
+
+\begin{lstlisting}
+# --- Assumes standard imports already present (e.g. `import math`) ---
+
+# Sieve of Eratosthenes - O(n log log n)
+# Returns (is_prime, primes).
+# Use when you need primality answers for all values up to n or a list of primes for factorization.
+# Memory: O(n).
+def sieve(n):
+    is_prime = [True] * (n + 1)
+    if n >= 0:
+        is_prime[0] = False
+    if n >= 1:
+        is_prime[1] = False
+    for i in range(2, int(n**0.5) + 1):
+        if is_prime[i]:
+            step = i
+            start = i * i
+            is_prime[start:n+1:step] = [False] * (((n - start) // step) + 1)
+    primes = [i for i, v in enumerate(is_prime) if v]
+    return is_prime, primes
+
+# Extended GCD: returns (g, x, y) such that a*x + b*y = g = gcd(a,b)
+# Complexity: O(log(min(a,b))).
+# Use to compute modular inverses when mod is not prime, or to solve a*x + b*y = c.
+def extgcd(a, b):
+    if b == 0:
+        return a, 1, 0
+    g, x1, y1 = extgcd(b, a % b)
+    return g, y1, x1 - (a // b) * y1
+
+# Modular inverse using extended gcd (works when mod is not prime)
+# Returns integer inverse in [0, mod) or None if not invertible.
+def modinv(a, mod):
+    g, x, _ = extgcd(a % mod, mod)
+    if g != 1:
+        return None  # inverse doesn't exist (a and mod not coprime)
+    return x % mod
+
+# CRT for two congruences: x = a1 (mod n1), x = a2 (mod n2)
+# Handles non-coprime moduli by checking consistency.
+# Returns (x, lcm) where x is the smallest non-negative solution modulo lcm(n1,n2), or (None, None) if none.
+def crt_pair(a1, n1, a2, n2):
+    g, m1, m2 = extgcd(n1, n2)
+    if (a2 - a1) % g != 0:
+        return None, None
+    l = n1 // g * n2
+    t = ((a2 - a1) // g) * m1 % (n2 // g)
+    x = (a1 + n1 * t) % l
+    return x, l
+
+# Fast integer floor-sum (AtCoder library pattern)
+# sum_{i=0}^{n-1} floor((a*i + b) / m)
+# Use for counting lattice points or evaluating floor-sum formulas efficiently.
+def floor_sum(n, m, a, b):
+    res = 0
+    while True:
+        if a >= m:
+            res += (n - 1) * n * (a // m) // 2
+            a %= m
+        if b >= m:
+            res += n * (b // m)
+            b %= m
+        y = a * n + b
+        if y < m:
+            break
+        n, m, a, b = y // m, a, m, y % m
+    return res
+
+# Modular exponentiation and inverse shortcuts
+# pow(a, e, mod) is fast and should be preferred for a**e % mod.
+# When mod is prime, use pow(a, -1, mod) for inverse (Python 3.8+), otherwise use modinv.
+
+# Simple small-prime filter for primality checks. Add Miller-Rabin for large values.
+def is_prime_simple(n):
+    if n < 2:
+        return False
+    small_primes = [2,3,5,7,11,13,17,19,23,29]
+    for p in small_primes:
+        if n == p:
+            return True
+        if n % p == 0:
+            return False
+    # For contest use: if n is large, apply deterministic Miller-Rabin bases for 64-bit.
+    return True
+
+# Usage notes:
+# - Prefer pow(a, e, mod) and pow(a, -1, mod) (when applicable) over custom loops.
+# - Use sieve when many primality tests or prime lists are needed; use trial division or Miller-Rabin when testing a few large numbers.
+
+\end{lstlisting}
+
+\subsection{Floating point and precision tips}
+\textbf{Description:} Practical guidance to avoid precision bugs in math and geometry. Prefer integer arithmetic when possible; use rational arithmetic (Fraction) only when exactness is required.
+
+\begin{lstlisting}
+# --- Assumes `import math` and `from fractions import Fraction` exist at the top-level of the cheatsheet.
+
+# EPS: absolute epsilon useful for values around magnitude 1.
+EPS = 1e-9
+
+# Absolute tolerance comparison:
+def is_close(a, b, eps=EPS):
+    """Return True when |a-b| <= eps. Good when values are around 1.
+    Use relative comparison for widely varying magnitudes.
+    """
+    return abs(a - b) <= eps
+
+# Relative tolerance comparison:
+def is_close_rel(a, b, rel_eps=1e-12, abs_eps=EPS):
+    """Return True when |a-b| <= max(rel_eps * max(|a|,|b|), abs_eps).
+    Use this to avoid false negatives when values are very large or very small.
+    """
+    return abs(a - b) <= max(rel_eps * max(abs(a), abs(b)), abs_eps)
+
+# Summation: use math.fsum for numerically stable summation of many floats:
+# total = math.fsum(list_of_floats)
+
+# Avoid repeated sqrt for comparisons: compare squared distances instead.
+# Example: to check if d1 < d2 compare d1_sq < d2_sq.
+
+# Fraction: exact rational arithmetic. Use when geometric intersections must be compared exactly.
+# Example: p = Fraction(3,7)
+# Caution: Fraction is slower and uses more memory; prefer integers or controlled eps comparisons in contests.
+
+# safe_div: return infinities instead of ZeroDivisionError for convenience in some algorithms.
+def safe_div(a, b):
+    if b == 0:
+        return float('inf') if a >= 0 else float('-inf')
+    return a / b
+
+# Quick tips summary:
+# - Keep computations integer when possible (use area2, orientations, squared distances).
+# - Use EPS and relative comparisons consistently in a problem.
+# - Use Fraction only when correctness requires exact rationals.
+# - Use math.fsum when summing many floating values to reduce error.
+\end{lstlisting}

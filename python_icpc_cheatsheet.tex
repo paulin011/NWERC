@@ -20,10 +20,16 @@
 \titlespacing*{\subsection}{0pt}{3pt}{1.5pt}
 \setlist{nosep, leftmargin=*}
 
+% Reduce overall document font size to 8pt by selecting a smaller normalsize at begin document.
+% This makes the whole document denser without changing class options.
+\AtBeginDocument{%
+    \fontsize{8}{9}\selectfont
+}
+
 % Code listing style
 \lstset{
     language=Python,
-    basicstyle=\ttfamily\footnotesize,
+    basicstyle=\ttfamily\scriptsize,
     keywordstyle=\color{blue}\bfseries,
     commentstyle=\color{gray}\itshape,
     stringstyle=\color{red},

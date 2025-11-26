@@ -1,5 +1,148 @@
 \section{Graph Algorithms}
 
+\subsection{Constructing Graphs}
+\textbf{Description:} Common patterns for building graphs from problem input. Always check whether the input is 0-indexed or 1-indexed (subtract 1 for 1-indexed inputs when using 0-based arrays). Choose representation based on density and operations you need (adjacency list for sparse graphs, adjacency matrix for dense/small graphs).
+
+\begin{lstlisting}
+# Unweighted undirected (defaultdict) - common and flexible
+from collections import defaultdict
+graph = defaultdict(list)
+for _ in range(m):
+    u, v = map(int, input().split())
+    u -= 1  # remove if input already 0-indexed
+    v -= 1
+    graph[u].append(v)
+    graph[v].append(u)
+
+# Directed: append only one direction
+# graph[u].append(v)
+
+# Weighted edges: store (neighbor, weight)
+graph = defaultdict(list)
+for _ in range(m):
+    u, v, w = map(int, input().split())
+    u -= 1; v -= 1
+    graph[u].append((v, w))
+    # graph[v].append((u, w))  # add for undirected
+
+# If n is known, list-of-lists is slightly faster
+graph = [[] for _ in range(n)]
+graph[u].append(v)
+
+# Avoid duplicate edges when needed
+graph_sets = [set() for _ in range(n)]
+graph_sets[u].add(v)
+
+# Adjacency matrix for dense graphs / small n
+adj = [[0] * n for _ in range(n)]
+adj[u][v] = 1  # or assign weight
+
+# Fast parsing for large input (useful in contests)
+import sys
+data = list(map(int, sys.stdin.buffer.read().split()))
+it = iter(data)
+n, m = next(it), next(it)
+for _ in range(m):
+    u, v = next(it), next(it)
+    u -= 1; v -= 1
+    graph[u].append(v)
+    graph[v].append(u)
+\end{lstlisting}
+
+% Additional: building graphs from a grid (programmatically, not from edge-list)
+\paragraph{Constructing a graph from a grid}
+\textbf{Description:} Many problems give a grid (maze, weights, terrain). Convert grid cells to nodes (id = x * m + y) or work with implicit neighbours on the fly.
+
+\begin{lstlisting}
+# Example grid (list of strings) where '.' is open and '#' is wall
+grid = [
+    "..#.",
+    ".#..",
+    "....",
+]
+n = len(grid)
+m = len(grid[0])
+
+# Map (x,y) to node id and back
+def id_of(x, y):
+    return x * m + y
+
+def coord_of(id):
+    return divmod(id, m)  # (x, y)
+
+# 4-direction neighbours
+dirs4 = [(0,1), (1,0), (0,-1), (-1,0)]
+
+# Build adjacency list for traversable cells
+graph = [[] for _ in range(n * m)]
+for x in range(n):
+    for y in range(m):
+        if grid[x][y] == '#':
+            continue
+        u = id_of(x, y)
+        for dx, dy in dirs4:
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < n and 0 <= ny < m and grid[nx][ny] != '#':
+                v = id_of(nx, ny)
+                graph[u].append(v)
+
+# Use BFS on the implicit/constructed graph
+from collections import deque
+start = id_of(0, 0)
+if grid[0][0] == '#':
+    start = None
+
+if start is not None:
+    dist = [-1] * (n * m)
+    q = deque([start])
+    dist[start] = 0
+    while q:
+        u = q.popleft()
+        for v in graph[u]:
+            if dist[v] == -1:
+                dist[v] = dist[u] + 1
+                q.append(v)
+
+# Diagonals (8-direction)
+dirs8 = dirs4 + [(-1,-1), (-1,1), (1,-1), (1,1)]
+
+# Weighted grid: movement cost stored separately
+costs = [[1] * m for _ in range(n)]  # example uniform cost
+wg = [[] for _ in range(n*m)]
+for x in range(n):
+    for y in range(m):
+        if grid[x][y] == '#':
+            continue
+        u = id_of(x,y)
+        for dx, dy in dirs4:
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < n and 0 <= ny < m and grid[nx][ny] != '#':
+                v = id_of(nx, ny)
+                wg[u].append((v, costs[nx][ny]))
+
+# Implicit neighbour generator (avoid building edges when memory matters)
+def neighbours(x, y):
+    for dx, dy in dirs4:
+        nx, ny = x + dx, y + dy
+        if 0 <= nx < n and 0 <= ny < m and grid[nx][ny] != '#':
+            yield nx, ny
+
+# BFS using implicit neighbours
+dist2 = [[-1] * m for _ in range(n)]
+from collections import deque
+q = deque()
+if grid[0][0] != '#':
+    dist2[0][0] = 0
+    q.append((0,0))
+
+while q:
+    x, y = q.popleft()
+    for nx, ny in neighbours(x, y):
+        if dist2[nx][ny] == -1:
+            dist2[nx][ny] = dist2[x][y] + 1
+            q.append((nx, ny))
+\end{lstlisting}
+
 \subsection{Graph Representation}
 \textbf{Description:} Adjacency list is most common for sparse graphs. Use defaultdict for convenience.
 
